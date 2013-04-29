@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ar" lang="ar" DIR="rtl">
+<head>
+ <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+ <title></title>
+ <script type="text/javascript">
+  function changeTitle(title) { 
+    document.title = title; 
+    document.title = "nop"; 
+  }
+
+
+
+ function addPackage(Name, icon, desc) {
+
+  var ni = document.getElementById('list');
+
+
+
+  var newdiv = document.createElement('a');
+
+  click_cb = 'changeTitle("call:on_package_clicked:' + Name + '");';
+  newdiv.setAttribute('onclick', click_cb);
+    
+  newdiv.setAttribute('id',Name);
+  newdiv.setAttribute('class', "pack");
+  newdiv.innerHTML = ' <img class="pack_icon" src="'+icon+'"/> '+Name+'<span>'+desc+'</span>';
+
+ ni.appendChild(newdiv);
+
+}
+function Clear() {
+  var d = document.getElementById('page');
+  var olddiv = document.getElementById('list');
+  d.removeChild(olddiv);
+
+  var newdiv = document.createElement('div');
+  newdiv.setAttribute('id','list');
+  d.appendChild(newdiv);
+}
+ </script>
+ <style>
+body { margin: 0; font: message-box;}
+.pack:active {
+ background-color:#ccc;
+ }
+#page a:nth-child(odd) {  background-color:#fff; }
+#page a:nth-child(even) { background-color:#F8F7F5; }
+ .pack {
+    margin-bottom: 0px;
+    overflow: hidden;
+    padding: 7px;
+    transition: all 0.7s ease 0s;
+    height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+     display: block;
+}
+
+.pack span {
+    color: #5F5F5F;
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+}
+.pack_icon {
+
+    float: right;
+    margin-left: 10px;
+	 width: 32px;
+	 height: 32px;
+ 
+}
+</style>
+ </head>
+
+<body id="page">
+ 
+  <div id="list">
+
+ </div>
+</body>
+</html>

@@ -1,0 +1,803 @@
+mintinstall (7.4.5) olivia; urgency=low
+
+  * Automatically load more packages when we get to the bottom of the list
+  * Fix score getting cut-off
+  * Search in category
+  * Include packages in the "java" section into the "Programming" category
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 13 Mar 2013 11:08:27 +0000
+
+mintinstall (7.4.4) nadia; urgency=low
+
+  * Remove auto_fix=False parameter in mark_install (prevents ending up with broken packages when installing conflicting recommends)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 15 Nov 2012 21:41:39 +0000
+
+mintinstall (7.4.3) nadia; urgency=low
+
+  * Fixed segfault due to character encoding
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 02 Nov 2012 14:49:08 +0000
+
+mintinstall (7.4.2) nadia; urgency=low
+
+  * Search while typing is now configurable
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun, 21 Oct 2012 12:01:13 +0100
+
+mintinstall (7.4.1) nadia; urgency=low
+
+  * Ship an initial set of reviews by default
+  * Run mintinstall as root and use kdesudo in KDE
+  * Removed large-font "Software Manager" label in main window
+  * Replaced background "frise" with EEE->FFF gradient
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 18 Oct 2012 23:50:44 +0100
+
+mintinstall (7.4.0) nadia; urgency=low
+
+  * New icon
+  * Refresh view after installation/removal
+  * Debconf support
+  * Aptclient replaces aptd
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 16 Oct 2012 15:28:20 +0100
+
+mintinstall (7.3.9) maya; urgency=low
+
+  * Force icon size to 32px
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 25 Jun 2012 15:46:37 +0100
+
+mintinstall (7.3.8) maya; urgency=low
+
+  * Specify dbus bus when using aptd
+  * Use apt signals instead of a threaded transaction loop
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 19 Jun 2012 16:40:37 +0100
+
+mintinstall (7.3.7) maya; urgency=low
+
+  * Don't accept to be run as root
+  * Don't crash when an icon can't be loaded (fixes Accessories and All Apps categories not showing in Maya)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 25 May 2012 10:06:44 +0100
+
+mintinstall (7.3.6) lisa; urgency=low
+
+  * Multiple fixes from glebihan and doverton51
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 26 Apr 2012 14:20:00 +0000
+
+mintinstall (7.3.5) lisa; urgency=low
+
+  * Featured Opera
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 02 Jan 2012 17:41:41 +0000
+
+mintinstall (7.3.4) lisa; urgency=low
+
+  * Removed commercial apps from categories view 
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  8 Nov 2011 12:54:00 +0000
+
+mintinstall (7.3.3) katya; urgency=low
+
+  * Replaced deprecated Python refs to pkg.isInstalled with pkg.is_installed
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  15 Jun 2011 11:49:00 +0000
+
+mintinstall (7.3.2) katya; urgency=low
+
+  * Added dependency on python-sexy
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  28 Apr 2011 14:14:00 +0000
+
+mintinstall (7.3.1) katya; urgency=low
+
+  * Mint 11 improvements
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  26 Apr 2011 15:43:00 +0000
+
+mintinstall (7.2.7) julia; urgency=low
+
+  * Immediately closes when requested
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  26 Oct 2010 17:07:00 +0000
+
+mintinstall (7.2.6) julia; urgency=low
+
+  * Immediately closes when requested
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  26 Oct 2010 17:07:00 +0000
+
+mintinstall (7.2.5) julia; urgency=low
+
+  * Unicode support in generated images
+  * ttf-wqy-microhei fonts are used if installed (bringing additional unicode support)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  26 Oct 2010 16:18:00 +0000
+
+mintinstall (7.2.4) julia; urgency=low
+
+  * Added dropbox to featured applications
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri,  22 Oct 2010 12:47:00 +0000
+
+mintinstall (7.2.3) julia; urgency=low
+
+  * Search is now case-insensitive
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  19 Oct 2010 15:29:00 +0000
+
+mintinstall (7.2.2) julia; urgency=low
+
+  * Fixed import error
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  11 Oct 2010 09:59:00 +0000
+
+mintinstall (7.2.1) julia; urgency=low
+
+  * APTD 0.3 compatible
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  05 Oct 2010 15:30:00 +0000
+
+mintinstall (7.2.0) julia; urgency=low
+
+  * Virtualbox-nonfree featured
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun,  03 Oct 2010 13:26:00 +0000
+
+mintinstall (7.1.9) julia; urgency=low
+
+  * Better categorization
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  21 Sep 2010 16:29:00 +0000
+
+mintinstall (7.1.8) julia; urgency=low
+
+  * Show application icons if mintinstall-icons is installed
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  08 Sep 2010 10:21:00 +0000
+
+mintinstall (7.1.7) isadora; urgency=low
+
+  * Show package versions
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  12 Jun 2010 10:42:00 +0000
+
+mintinstall (7.1.6) isadora; urgency=low
+
+  * Fixed double-click issue with webkit
+  * Limited categories to 500 items (speed improvement)
+  * Only showing 10 comments by default
+  * Reduced lag with aptd
+  * New option to use external browser for links
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  2 Jun 2010 12:18:00 +0000
+ 
+mintinstall (7.1.5) isadora; urgency=low
+
+  * Using hashtables, significant speed improvements
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri,  28 May 2010 14:57:00 +0000
+
+mintinstall (7.1.4) isadora; urgency=low
+
+  * Updated desktop file
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri,  14 May 2010 10:45:00 +0000
+
+mintinstall (7.1.3) isadora; urgency=low
+
+  * Starts faster
+  * More responsive (transaction loop initiates earlier)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  08 May 2010 13:02:00 +0000
+
+mintinstall (7.1.2) isadora; urgency=low
+
+  * Localization
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  08 May 2010 09:47:00 +0000
+
+mintinstall (7.1.1) isadora; urgency=low
+
+  * Localization
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  06 May 2010 14:19:00 +0000
+
+mintinstall (7.1.0) isadora; urgency=low
+
+  * Added Java and Skype to featured list
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  06 May 2010 13:38:00 +0000
+
+mintinstall (7.0.9) isadora; urgency=low
+
+  * Localization
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  06 May 2010 12:39:00 +0000
+
+mintinstall (7.0.8) isadora; urgency=low
+
+  * Localization
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  05 May 2010 19:02:00 +0000
+
+mintinstall (7.0.7) isadora; urgency=low
+
+  * Faster boot
+  * Better looking
+  * Load reviews before starting up
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  01 May 2010 14:35:00 +0000
+
+mintinstall (7.0.6) isadora; urgency=low
+
+  * Fixed typo
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  28 Apr 2010 14:42:00 +0000
+
+mintinstall (7.0.5) isadora; urgency=low
+
+  * Removed duplicate entry for calibre in viewers
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  27 Apr 2010 11:13:00 +0000
+
+mintinstall (7.0.4) isadora; urgency=low
+
+  * Updated categories
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  27 Apr 2010 11:13:00 +0000
+
+mintinstall (7.0.3) isadora; urgency=low
+
+  * Updated categories
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  12 Apr 2010 14:38:00 +0000
+
+mintinstall (7.0.2) isadora; urgency=low
+
+  * Replaced ttf-droid with ttf-freefont in dependencies
+  * Added dependency on python-imaging
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  12 Apr 2010 10:31:00 +0000
+
+mintinstall (7.0.1) isadora; urgency=low
+
+  * Apps can now be reviewed from within the Software Manager
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  5 Apr 2010 16:33:00 +0000
+
+mintinstall (7.0.0) isadora; urgency=low
+
+  * Complete rewrite 
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  31 Mar 2010 16:36:00 +0000
+
+mintinstall (6.5.1) helena; urgency=low
+
+  * Decompress uses both gzip and tar directly, so it works for tar and for tar.gz archives
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  19 Nov 2009 18:33:00 +0000
+
+mintinstall (6.5.0) helena; urgency=low
+
+  * mintInstall window, removed title and used "Upgrade" instead of "Install" in the text labels when suitable
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  19 Nov 2009 16:18:00 +0000
+
+mintinstall (6.4.9) helena; urgency=low
+
+  * Fixed missing i18n
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  17 Nov 2009 12:27:00 +0000
+
+mintinstall (6.4.8) helena; urgency=low
+
+  * Made window fully opaque
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  14 Nov 2009 10:10:00 +0000
+
+mintinstall (6.4.7) helena; urgency=low
+
+  * Modified translation framework
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  3 Nov 2009 10:59:00 +0000
+
+mintinstall (6.4.6) helena; urgency=low
+
+  * Changed path of release.id to use mintinstall-data instead of mint-info
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun,  1 Nov 2009 14:26:00 +0000
+
+mintinstall (6.4.5) helena; urgency=low
+
+  * Uses mint-common to launch browsers in user-mode 
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri,  30 Oct 2009 17:41:00 +0000
+
+mintinstall (6.4.4) helena; urgency=low
+
+  * Not dependent on mintMenu anymore
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  8 Oct 2009 14:27:00 +0000
+
+mintinstall (6.4.3) helena; urgency=low
+
+  * Removed dependency on mintsystem (using mint-common)
+  * Updated calls to newer apt lib
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  7 Oct 2009 17:41:00 +0000
+
+mintinstall (6.4.2) helena; urgency=low
+
+  * Fixed remove icon for color-blind people
+  * Install/remove applications doesn't scroll the list anymore
+  * User can now cancel changes individually
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  28 Sep 2009 17:08:00 +0000
+
+mintinstall (6.4.1) helena; urgency=low
+
+  * Changed status icons
+  * Fixed scrolling issues
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri,  25 Sep 2009 15:15:00 +0000
+
+mintinstall (6.4.0) helena; urgency=low
+
+  * GUI improvements
+  * Multiple installs
+  * Filtering
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  24 Sep 2009 15:28:00 +0000
+
+mintinstall (6.3.9) helena; urgency=low
+
+  * Data moved to mintinstall-data
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  29 Jul 2009 19:38:00 +0000
+
+mintinstall (6.3.8) helena; urgency=low
+
+  * Blueprint implemented: https://blueprints.launchpad.net/linuxmint/+spec/generic-branding
+  * Blueprint implemented: https://blueprints.launchpad.net/linuxmint/+spec/mintinstall-uninstall
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  29 Jul 2009 19:38:00 +0000
+
+mintinstall (6.3.7) gloria; urgency=low
+
+  * Bug fix: "Finished" in the progress bar of installing/upgrading is not internationalised. (https://bugs.launchpad.net/bugs/399298)
+  * Bug fix: Lag when no connection to the Internet (https://bugs.launchpad.net/bugs/399277)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  16 Jul 2009 12:53:00 +0000
+
+mintinstall (6.3.6) gloria; urgency=low
+
+  * Bug fix: No label under toolbar icons (https://bugs.launchpad.net/bugs/399705)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  16 Jul 2009 12:32:00 +0000
+
+mintinstall (6.3.5) gloria; urgency=low
+
+  * Bug fix: Firefox now runs in user-mode
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun,  12 Jul 2009 19:11:00 +0000
+
+mintinstall (6.3.4) gloria; urgency=low
+
+  * Updated translations
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  19 May 2009 18:40:00 +0000
+
+mintinstall (6.3.3) gloria; urgency=low
+
+  * Updated meta-data
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  18 May 2009 15:42:00 +0000
+
+mintinstall (6.3.2) gloria; urgency=low
+
+  * Added translations
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun,  17 May 2009 20:57:00 +0000
+
+mintinstall (6.3.1) gloria; urgency=low
+
+  * Now downloads missing screenshots in a different thread, results in interface being more snappy
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu,  14 May 2009 19:03:00 +0000
+
+mintinstall (6.3) gloria; urgency=low
+
+  * Changed virtualbox to virtualbox-2.2 in featured_applications/list.txt
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat,  2 May 2009 14:02:00 +0000
+
+mintinstall (6.2) gloria; urgency=low
+
+  * Now uses /usr/bin/mint-which-launcher
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  22 Apr 2009 17:08:00 +0000
+
+mintinstall (6.1) gloria; urgency=low
+
+  * Changed virtualbox-2.1 to virtualbox in featured_applications/list.txt
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed,  22 Apr 2009 16:21:00 +0000
+
+mintinstall (6.0) gloria; urgency=low
+
+  * Only try once to download missing screenshot
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  21 Apr 2009 17:00:00 +0000
+
+mintinstall (5.9) gloria; urgency=low
+
+  * Made mintInstall a root application
+  * Now uses /usr/lib/linuxmint/mintInstall/data instead of ~/.linuxmint/mintInstall/
+  * Comes pre-loaded with data
+  * Missing screenshots are automatically downloaded
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  20 Apr 2009 23:09:00 +0000
+
+mintinstall (5.8) gloria; urgency=low
+
+  * Fixed regression in 5.7 showing raw description instead of summary in featured applications
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  20 Apr 2009 18:54:00 +0000
+
+mintinstall (5.7) gloria; urgency=low
+
+  * GUI improvements, shows less info on main screen, more in "more info" screen
+  * Now shows package sizes and full descriptions
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon,  20 Apr 2009 18:31:00 +0000
+
+mintinstall (5.6) gloria; urgency=low
+
+  * Moved all references of /usr/lib/linuxmint/mintSystem/version to /etc/linuxmint/version (after this was moved from mintsystem to mint-info)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue,  14 Apr 2009 10:30:00 +0000
+
+mintinstall (5.5) gloria; urgency=low
+
+  * About dialog now uses mint-apt-version
+  * Added featured applications
+  * Added /usr/bin/mint-synaptic-install
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Mon,  13 Apr 2009 20:22:00 +0000
+
+mintinstall (5.4.3) gloria; urgency=low
+
+  * About dialog now uses APT to know the version number
+  * Better looking clear and find buttons
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sat,  11 Apr 2009 18:41:00 +0000
+
+mintinstall (5.4.2) gloria; urgency=low
+
+  * /usr/bin/mintinstall shortcut to /usr/bin/mintInstall and now opens frontend if no mint file is given
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sat,  11 Apr 2009 18:37:00 +0000
+
+mintinstall (5.4.1) gloria; urgency=low
+
+  * Added mint-search-portal
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Thu,  26 Mar 2009 17:39:00 +0000
+
+mintinstall (5.4.0) gloria; urgency=low
+
+  * Error handling in mint-make-cmd
+  * Added mint-search-apt and mint-show-apt
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Tue,  17 Mar 2009 10:42:00 +0000
+
+mintinstall (5.3.7) felicia; urgency=low
+
+  * Use kdesudo instead of the deprecated kdesu in KDE.
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Tue,  24 Feb 2009 18:49:00 +0000
+
+mintinstall (5.3.6) felicia; urgency=low
+
+  * Doesn't download what's already there on the local machine. Refresh process (not the initial one) is now much faster. 
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sun,  11 Jan 2009 17:33:00 +0000
+
+mintinstall (5.3.5) felicia; urgency=low
+
+  * Added translations
+  * Replaced zenity with modal dialog for screenshot not loaded error
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Fri,  5 Dec 2008 23:14:00 +0000
+
+mintinstall (5.3.4) felicia; urgency=low
+
+  * Changed frontend size to fit in 800x576
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Thu,  4 Dec 2008 19:55:00 +0000
+
+mintinstall (5.3.3) felicia; urgency=low
+
+  * Replaced zenity with modal dialog for initial refresh message
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sun,  9 Nov 2008 12:26:00 +0000
+
+mintinstall (5.3.2) felicia; urgency=low
+
+  * added version info in about dialog
+  * show a linkButton for items website in frontend 
+  * fixed missing icon in search dialog
+  * Added nb, ca, ro, pt_PT, pt_BR, es, ko and sk translations
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Mon,  27 Oct 2008 13:02:00 +0000
+
+mintinstall (5.3.1) elyssa; urgency=low
+
+  * frontend now selects first application in the list by default
+  * Added DE and JA translations
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sat,  11 Oct 2008 18:20:00 +0000
+
+mintinstall (5.3) elyssa; urgency=low
+
+  * Added patch from Christian Dannie Storgaard (cybolic) to show apt search results in a nice GTK list.
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Thu,  9 Oct 2008 21:32:00 +0000
+
+mintinstall (5.2.1) elyssa; urgency=low
+
+  * Fixes a bug in /usr/bin/mintInstall (now checks /etc/linuxmint/info)
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Tue,  2 Sep 2008 18:54:00 +0000
+
+mintinstall (5.2) elyssa; urgency=low
+
+  * Uses kdesu instead of gksu under KDE
+  * Shows a nicer password dialog for kdesu/gksu
+  * Known categories are now localized
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Mon,  1 Sep 2008 18:54:00 +0000
+
+mintinstall (5.1) elyssa; urgency=low
+
+  * Hides email addresses in reviews
+  * Alternate colours in table
+  * Information message instead of error message at startup
+  * Progressbar while refreshing and loading
+  * Versions window and button
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sun,  31 Aug 2008 18:43:00 +0000
+
+mintinstall (5.0) elyssa; urgency=low
+
+  * New frontend for browsing portals from the desktop
+  * Multi-portals support (portals.list)
+  * Relies in mintSystem for all common data/resources
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Tue,  26 Aug 2008 22:58:00 +0000
+
+mintinstall (4.0) elyssa; urgency=low
+
+  * Auto-detects which is the best repository to use, doesn't ask the user anymore
+  * Doesn't show confirmation dialog anymore
+  * Frontend: says "no results" when apt search returns nothing
+  * Frontend: textfield value is kept the same between different tabs
+  * Translations: new cs, new ca, updated bg
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Fri,  11 Jul 2008 18:20:00 +0000
+
+mintinstall (3.9) elyssa; urgency=low
+
+  * Uses default browser, not just firefox
+  * Uses aptitude for search and show now
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Thu,  22 May 2008 15:59:00 +0000
+
+mintinstall (3.8) elyssa; urgency=low
+
+  * Make postinst statements conditional (cause they don't necessarily apply in KDE)
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Tue,  29 Apr 2008 17:41:00 +0000
+
+mintinstall (3.7) elyssa; urgency=low
+
+  * Mint icon in confirmation dialog
+  * Now uses local repositories for mint files without repos (faster)
+  * new translations: ga pt_BR tr pl de da it sk 
+  * corrections on nl
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Sat,  29 Mar 2008 16:23:00 +0000
+
+mintinstall (3.6) elyssa; urgency=low
+
+  * New URL for LM repository
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Fri,  28 Mar 2008 12:45:00 +0000
+
+mintinstall (3.5) elyssa; urgency=low
+
+  * New translations: bg  el  es  nl  pt  ru  sv  uk
+  * Multi words search
+  * lag fix for mint search and button
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Mon,  18 Feb 2008 18:26:00 +0000
+
+mintinstall (3.4) daryna; urgency=low
+
+  * HIG work done
+  * Added support for GetDeb
+  * Added support for APT
+  * Better translation system
+  * Now relies on mintSystem for sources.list and release.id
+
+ -- Clement Lefebvre <clem@linuxmint.com>  Wed,  30 Jan 2008 23:11:00 +0000
+
+mintinstall (3.3) daryna; urgency=low
+
+  * removed Polish translation
+
+ -- clem <root@linuxmint.com>  Sat,  24 Nov 2007 01:04:00 +0000
+
+mintinstall (3.2) daryna; urgency=low
+
+  * new Polish translation
+
+ -- clem <root@linuxmint.com>  Sat,  24 Nov 2007 00:30:00 +0000
+
+mintinstall (3.1) daryna; urgency=low
+
+  * new sources.list 
+
+ -- clem <root@linuxmint.com>  Wed,  14 Nov 2007 02:44:00 +0000
+
+mintinstall (3.0) daryna; urgency=low
+
+  * new German translation
+
+ -- clem <root@linuxmint.com>  Mon,  12 Nov 2007 22:19:00 +0000
+
+mintinstall (2.9) daryna; urgency=low
+
+  * small bug in URL
+
+ -- clem <root@linuxmint.com>  Wed,  24 Oct 2007 01:23:00 +0000
+
+mintinstall (2.8) daryna; urgency=low
+
+  * gutsy sources.list
+  * URL to software portal now take release number in consideration
+
+ -- clem <root@linuxmint.com>  Wed,  24 Oct 2007 00:09:00 +0000
+
+mintinstall (2.7) daryna; urgency=low
+
+  * new welcome GUI
+  * presence in the menu
+  * icon for mimetype
+  * better repository restoration
+  * summary window centered
+
+ -- clem <root@linuxmint.com>  Wed,  17 Oct 2007 23:47:00 +0000
+
+mintinstall (2.6) daryna; urgency=low
+ 
+  * now uses synaptic
+  * i18n
+
+ -- clem <root@linuxmint.com>  Tue,  16 Oct 2007 20:44:00 +0000
+
+mintinstall (2.5) celena; urgency=low
+
+  * added celena in the repos
+
+ -- clem <root@linuxmint.com>  Sun,  9 Sep 2007 22:51:00 +0000
+
+mintinstall (2.4) cassandra; urgency=low
+
+  * No need for icons in mint-make
+  * Version info removed
+
+ -- clem <root@linuxmint.com>  Fri,  29 Jun 2007 14:24:00 +0000
+
+mintinstall (2.3) cassandra; urgency=low
+
+  * Crashed when the package wasn't in the default repos. Fixed. 
+
+ -- clem <root@linuxmint.com>  Fri,  22 Jun 2007 13:02:00 +0000
+
+mintinstall (2.2) cassandra; urgency=low
+
+  * Quick fix. 
+
+ -- clem <root@linuxmint.com>  Mon,  11 Jun 2007 00:07:00 +0000
+
+mintinstall (2.1) cassandra; urgency=low
+
+  * Can now upgrade packages
+  * Mint files can now execute commands and know the username and home directory
+  * improved performance on package status detection
+  * improved package status detection
+  * uses the new medibuntu repo
+
+ -- clem <root@linuxmint.com>  Sun,  10 Jun 2007 23:23:00 +0000 
+
+mintinstall (2.0) cassandra; urgency=low
+
+  * Fix in /usr/bin/mintInstall --> better Firefox integration
+
+ -- clem <root@linuxmint.com>  Thu,  7 Jun 2007 23:02:00 +0000
+
+mintinstall (1.9) cassandra; urgency=low
+
+  * Added mint-make, mint-decompress and mint-compress
+
+ -- clem <root@linuxmint.com>  Wed,  16 May 2007 23:48:27 +0000
+
+mintinstall (1.8) cassandra; urgency=low
+
+  * Window is minizable
+  * Progressbar works better
+  * Backup and restore shown to user
+
+ -- clem <root@linuxmint.com>  Tue,  15 May 2007 16:36:41 +0000
+
+mintinstall (1.7) cassandra; urgency=low
+
+  * Better backup of the sources.list
+  * Can now restore sources.list if something goes wrong. 
+  * Progressbar fix. 
+
+ -- clem <root@linuxmint.com>  Tue,  15 May 2007 13:58:36 +0000
+
+mintinstall (1.6) cassandra; urgency=low
+ 
+  * mintInstall now deletes locks at startup
+  * copys sources.list to backup instead of moving it
+
+ -- clem <root@linuxmint.com>  Tue,  8 May 2007 12:20:00 +0000
+
+mintinstall (1.5) cassandra; urgency=low
+
+  * Fixed package detection
+
+ -- clem <root@linuxmint.com>  Mon,  7 May 2007 23:56:00 +0000
+
+mintinstall (1.4) cassandra; urgency=low
+
+  * Merged all windows into one
+  * Redesigned the GUI
+  * Now shows repositories and packages
+  * Informs the user on the success of the overall installation
+
+ -- clem <root@linuxmint.com>  Sat,  5 May 2007 15:22:11 +0000
+
+mintinstall (1.3) cassandra; urgency=low
+
+  * Fixed bug in KEY Command
+  * Repositories now add to sources.list instead of replacing it. 
+
+ -- clem <root@linuxmint.com>  Thu,  3 May 2007 14:55:27 +0000
+
+mintinstall (1.2) cassandra; urgency=low
+
+  * Fixed a bug (didn't update after adding a source)
+
+ -- clem <root@linuxmint.com>  Thu,  3 May 2007 14:22:48 +0000
+
+mintinstall (1.1) cassandra; urgency=low
+
+  * Added the KEY command
+
+ -- clem <root@linuxmint.com>  Thu,  3 May 2007 13:44:54 +0000
+
+mintinstall (1.0) cassandra; urgency=low
+
+  * Initial release
+
+ -- clem <root@linuxmint.com>  Thu,  3 May 2007 12:59:21 +0000
+
