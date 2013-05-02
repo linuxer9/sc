@@ -31,10 +31,7 @@ from widgets.searchentry import SearchEntry
 from user import home
 import base64
 
-# Don't let mintinstall run as root
-#~ if os.getuid() == 0:
-    #~ print "The software manager should not be run as root. Please run it in user mode."
-    #~ sys.exit(1)
+
 if os.getuid() != 0:
     print "The software manager should be run as root."
     sys.exit(1)
@@ -54,7 +51,7 @@ def print_timing(func):
     return wrapper
 
 # i18n
-gettext.install("mintinstall", "/usr/share/locale")
+gettext.install("sc", "/usr/share/locale")
 
 # i18n for menu item
 menuName = _("Software Manager")
@@ -82,30 +79,6 @@ def get_dbus_bus():
    bus = dbus.SystemBus()
    return bus
 
-#class DownloadReviews(threading.Thread):
-#    def __init__(self, application):
-#        threading.Thread.__init__(self)
-#        self.application = application
-#
-#    def run(self):
-#        try:
-#            reviews_dir = home + "/.linuxmint/mintinstall"
-#            os.system("mkdir -p " + reviews_dir)
-#            reviews_path = reviews_dir + "/reviews.list"
-#            reviews_path_tmp = reviews_path + ".tmp"
-#            url=urllib.urlretrieve("http://community.linuxmint.com/data/reviews.list", reviews_path_tmp)
-#            numlines = 0
-#            numlines_new = 0
-#            if os.path.exists(reviews_path):
-#                numlines = int(commands.getoutput("cat " + reviews_path + " | wc -l"))
-#            if os.path.exists(reviews_path_tmp):
-#                numlines_new = int(commands.getoutput("cat " + reviews_path_tmp + " | wc -l"))
-#            if numlines_new > numlines:
-#                os.system("mv " + reviews_path_tmp + " " + reviews_path)
-#                print "Overwriting reviews file in " + reviews_path
-#                self.application.update_reviews()
-#        except Exception, detail:
-#            print detail
 
 class APTProgressHandler(threading.Thread):
     def __init__(self, application, packages, wTree, apt_client):
@@ -113,7 +86,7 @@ class APTProgressHandler(threading.Thread):
         self.application = application
         self.apt_client = apt_client
         self.wTree = wTree
-        self.status_label = wTree.get_widget("label_ongoing")
+        
         self.progressbar = wTree.get_widget("progressbar1")
         self.tree_transactions = wTree.get_widget("tree_transactions")
         self.packages = packages
@@ -218,7 +191,7 @@ class APTProgressHandler(threading.Thread):
         else:
             fraction = 0
             progress = ""
-        self.status_label.set_text(_("%d ongoing actions") % progress_info["nb_tasks"])
+        
         self.progressbar.set_text(progress)
         self.progressbar.set_fraction(fraction / 100.)
 
@@ -334,7 +307,7 @@ class Application():
         self.add_packages()
         self.cache_apt()
         # Build the GUI
-        gladefile = "/usr/lib/sc/mintinstall.glade"
+        gladefile = "/usr/lib/sc/sc.glade"
         wTree = gtk.glade.XML(gladefile, "main_window")
         wTree.get_widget("main_window").set_title(_("Software Manager"))
         wTree.get_widget("main_window").set_icon_from_file("/usr/lib/sc/icon.svg")
@@ -355,87 +328,91 @@ class Application():
         self.prefs = self.read_configuration()
 
         # Build the menu
-        fileMenu = gtk.MenuItem(_("_File"))
-        fileSubmenu = gtk.Menu()
-        fileMenu.set_submenu(fileSubmenu)
-        closeMenuItem = gtk.ImageMenuItem(gtk.STOCK_CLOSE)
-        closeMenuItem.get_child().set_text(_("Close"))
-        closeMenuItem.connect("activate", self.close_application)
-        fileSubmenu.append(closeMenuItem)
+        #fileMenu = gtk.MenuItem(_("_File"))
+        #fileSubmenu = gtk.Menu()
+        #fileMenu.set_submenu(fileSubmenu)
+        #closeMenuItem = gtk.ImageMenuItem(gtk.STOCK_CLOSE)
+        #closeMenuItem.get_child().set_text(_("Close"))
+        #closeMenuItem.connect("activate", self.close_application)
+        #fileSubmenu.append(closeMenuItem)
 
-        editMenu = gtk.MenuItem(_("_Edit"))
-        editSubmenu = gtk.Menu()
-        editMenu.set_submenu(editSubmenu)
-        prefsMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-        prefsMenuItem.get_child().set_text(_("Preferences"))
-        prefsMenu = gtk.Menu()
-        prefsMenuItem.set_submenu(prefsMenu)
+        #editMenu = gtk.MenuItem(_("_Edit"))
+        #editSubmenu = gtk.Menu()
+        #editMenu.set_submenu(editSubmenu)
+        #prefsMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
+        #prefsMenuItem.get_child().set_text(_("Preferences"))
+        #prefsMenu = gtk.Menu()
+        #prefsMenuItem.set_submenu(prefsMenu)
 
-        searchInSummaryMenuItem = gtk.CheckMenuItem(_("Search in packages summary (slower search)"))
-        searchInSummaryMenuItem.set_active(self.prefs["search_in_summary"])
-        searchInSummaryMenuItem.connect("toggled", self.set_search_filter, "search_in_summary")
+        #searchInSummaryMenuItem = gtk.CheckMenuItem(_("Search in packages summary (slower search)"))
+        #searchInSummaryMenuItem.set_active(self.prefs["search_in_summary"])
+        #searchInSummaryMenuItem.connect("toggled", self.set_search_filter, "search_in_summary")
 
-        searchInDescriptionMenuItem = gtk.CheckMenuItem(_("Search in packages description (even slower search)"))
-        searchInDescriptionMenuItem.set_active(self.prefs["search_in_description"])
-        searchInDescriptionMenuItem.connect("toggled", self.set_search_filter, "search_in_description")
+        #searchInDescriptionMenuItem = gtk.CheckMenuItem(_("Search in packages description (even slower search)"))
+        #searchInDescriptionMenuItem.set_active(self.prefs["search_in_description"])
+        #searchInDescriptionMenuItem.connect("toggled", self.set_search_filter, "search_in_description")
 
-        openLinkExternalMenuItem = gtk.CheckMenuItem(_("Open links using the web browser"))
-        openLinkExternalMenuItem.set_active(self.prefs["external_browser"])
-        openLinkExternalMenuItem.connect("toggled", self.set_external_browser)
+        #openLinkExternalMenuItem = gtk.CheckMenuItem(_("Open links using the web browser"))
+        #openLinkExternalMenuItem.set_active(self.prefs["external_browser"])
+        #openLinkExternalMenuItem.connect("toggled", self.set_external_browser)
 
-        searchWhileTypingMenuItem = gtk.CheckMenuItem(_("Search while typing"))
-        searchWhileTypingMenuItem.set_active(self.prefs["search_while_typing"])
-        searchWhileTypingMenuItem.connect("toggled", self.set_search_filter, "search_while_typing")
+        #searchWhileTypingMenuItem = gtk.CheckMenuItem(_("Search while typing"))
+        #searchWhileTypingMenuItem.set_active(self.prefs["search_while_typing"])
+        #searchWhileTypingMenuItem.connect("toggled", self.set_search_filter, "search_while_typing")
 
-        prefsMenu.append(searchInSummaryMenuItem)
-        prefsMenu.append(searchInDescriptionMenuItem)
-        prefsMenu.append(openLinkExternalMenuItem)
-        prefsMenu.append(searchWhileTypingMenuItem)
+        #prefsMenu.append(searchInSummaryMenuItem)
+        #prefsMenu.append(searchInDescriptionMenuItem)
+        #prefsMenu.append(openLinkExternalMenuItem)
+        #prefsMenu.append(searchWhileTypingMenuItem)
 
         #prefsMenuItem.connect("activate", open_preferences, treeview_update, statusIcon, wTree)
-        editSubmenu.append(prefsMenuItem)
+        #editSubmenu.append(prefsMenuItem)
 
-        accountMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-        accountMenuItem.get_child().set_text(_("Account information"))
-        accountMenuItem.connect("activate", self.open_account_info)
-        editSubmenu.append(accountMenuItem)
+        #accountMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
+        #accountMenuItem.get_child().set_text(_("Account information"))
+        #accountMenuItem.connect("activate", self.open_account_info)
+        #editSubmenu.append(accountMenuItem)
 
-        if os.path.exists("/usr/bin/software-properties-gtk") or os.path.exists("/usr/bin/software-properties-kde"):
-            sourcesMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-            sourcesMenuItem.set_image(gtk.image_new_from_file("/usr/lib/linuxmint/mintUpdate/icons/software-properties.png"))
-            sourcesMenuItem.get_child().set_text(_("Software sources"))
-            sourcesMenuItem.connect("activate", self.open_repositories)
-            editSubmenu.append(sourcesMenuItem)
+        #if os.path.exists("/usr/bin/software-properties-gtk") or os.path.exists("/usr/bin/software-properties-kde"):
+        #    sourcesMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
+        #    sourcesMenuItem.set_image(gtk.image_new_from_file("/usr/lib/sc/software-properties.png"))
+        #    sourcesMenuItem.get_child().set_text(_("Software sources"))
+        #    sourcesMenuItem.connect("activate", self.open_repositories)
+        #    editSubmenu.append(sourcesMenuItem)
 
-        viewMenu = gtk.MenuItem(_("_View"))
-        viewSubmenu = gtk.Menu()
-        viewMenu.set_submenu(viewSubmenu)
+        #viewMenu = gtk.MenuItem(_("_View"))
+        #viewSubmenu = gtk.Menu()
+        #viewMenu.set_submenu(viewSubmenu)
 
-        availablePackagesMenuItem = gtk.CheckMenuItem(_("Available packages"))
-        availablePackagesMenuItem.set_active(self.prefs["available_packages_visible"])
-        availablePackagesMenuItem.connect("toggled", self.set_filter, "available_packages_visible")
+        #availablePackagesMenuItem = gtk.CheckMenuItem(_("Available packages"))
+        #availablePackagesMenuItem.set_active(self.prefs["available_packages_visible"])
+        #availablePackagesMenuItem.connect("toggled", self.set_filter, "available_packages_visible")
 
-        installedPackagesMenuItem = gtk.CheckMenuItem(_("Installed packages"))
-        installedPackagesMenuItem.set_active(self.prefs["installed_packages_visible"])
-        installedPackagesMenuItem.connect("toggled", self.set_filter, "installed_packages_visible")
+        #installedPackagesMenuItem = gtk.CheckMenuItem(_("Installed packages"))
+        #installedPackagesMenuItem.set_active(self.prefs["installed_packages_visible"])
+        #installedPackagesMenuItem.connect("toggled", self.set_filter, "installed_packages_visible")
 
-        viewSubmenu.append(availablePackagesMenuItem)
-        viewSubmenu.append(installedPackagesMenuItem)
+        #viewSubmenu.append(availablePackagesMenuItem)
+        #viewSubmenu.append(installedPackagesMenuItem)
 
-        helpMenu = gtk.MenuItem(_("_Help"))
-        helpSubmenu = gtk.Menu()
-        helpMenu.set_submenu(helpSubmenu)
-        aboutMenuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
-        aboutMenuItem.get_child().set_text(_("About"))
-        aboutMenuItem.connect("activate", self.open_about)
-        helpSubmenu.append(aboutMenuItem)
 
         #browser.connect("activate", browser_callback)
         #browser.show()
-        wTree.get_widget("menubar1").append(fileMenu)
-        wTree.get_widget("menubar1").append(editMenu)
-        wTree.get_widget("menubar1").append(viewMenu)
-        wTree.get_widget("menubar1").append(helpMenu)
+        #wTree.get_widget("menubar1").append(fileMenu)
+        #wTree.get_widget("menubar1").append(editMenu)
+        #wTree.get_widget("menubar1").append(viewMenu)
+
+        #toolbar = wTree.get_widget("toolbar1")
+        
+        #quittb = gtk.ToolButton(gtk.STOCK_QUIT)
+        #quittb.connect("clicked", self.close_application)
+        #quittb.set_label("quit")
+        #quittb.set_is_important(True)
+        #abouttb = gtk.ToolButton(gtk.STOCK_ABOUT)
+
+        #srctb.set_icon_widget(image)
+        #toolbar.insert(quittb, 0)
+        #toolbar.insert(abouttb, 1)
 
         # Build the applications tables
         self.tree_applications = webkit.WebView()
@@ -448,7 +425,7 @@ class Application():
         self.tree_transactions = wTree.get_widget("tree_transactions")
 
         
-        self.build_application_tree(self.tree_mixed_applications)
+        #self.build_application_tree(self.tree_mixed_applications)
         self.build_application_tree(self.tree_search)
         self.build_transactions_tree(self.tree_transactions)
 
@@ -513,7 +490,7 @@ class Application():
         self.packageBrowser.connect("button-press-event", lambda w, e: e.button == 3)
         self.screenshotBrowser.connect("button-press-event", lambda w, e: e.button == 3)
 
-        wTree.get_widget("label_ongoing").set_text(_("No ongoing actions"))
+        #wTree.get_widget("label_ongoing").set_text(_("No ongoing actions"))
         wTree.get_widget("label_transactions_header").set_text(_("Active tasks:"))
         wTree.get_widget("progressbar1").hide_all()
 
@@ -617,24 +594,6 @@ class Application():
         elif os.path.exists("/usr/bin/software-properties-kde"):
             os.system("%s /usr/bin/software-properties-kde" % launcher)
         self.close_application(None, None, 9) # Status code 9 means we want to restart ourselves
-
-    def open_account_info(self, widget):
-        gladefile = "/usr/lib/sc/mintinstall.glade"
-        wTree = gtk.glade.XML(gladefile, "window_account")
-        wTree.get_widget("window_account").set_title(_("Account information"))
-        wTree.get_widget("window_account").set_icon_from_file("/usr/lib/sc/icon.svg")
-        wTree.get_widget("label1").set_label("<b>%s</b>" % _("Your community account"))
-        wTree.get_widget("label1").set_use_markup(True)
-        wTree.get_widget("label2").set_label("<i><small>%s</small></i>" % _("Fill in your account info to review applications"))
-        wTree.get_widget("label2").set_use_markup(True)
-        wTree.get_widget("label3").set_label(_("Username:"))
-        wTree.get_widget("label4").set_label(_("Password:"))
-        wTree.get_widget("entry_username").set_text(self.prefs["username"])
-        wTree.get_widget("entry_password").set_text(base64.b64decode(self.prefs["password"]))
-        wTree.get_widget("close_button").connect("clicked", self.close_window, wTree.get_widget("window_account"))
-        wTree.get_widget("entry_username").connect("notify::text", self.update_account_info, "username")
-        wTree.get_widget("entry_password").connect("notify::text", self.update_account_info, "password")
-        wTree.get_widget("window_account").show_all()
 
     def close_window(self, widget, window):
         window.hide()
@@ -1084,12 +1043,6 @@ class Application():
     
     def _load_more_packages(self):
         self._load_more_timer = None
-        adjustment = self.tree_applications.get_vadjustment()
-        if adjustment.get_value() + adjustment.get_page_size() > 0.95 * adjustment.get_upper():
-            if len(self._listed_packages) > self._nb_displayed_packages:
-                packages_to_show = self._listed_packages[self._nb_displayed_packages:self._nb_displayed_packages+500]
-                self.display_packages_list(packages_to_show)
-                self._nb_displayed_packages = min(len(self._listed_packages), self._nb_displayed_packages + 500)
         return False
     
     def display_packages_list(self, packages_list):
@@ -1163,27 +1116,6 @@ class Application():
             except:
                icon = self.find_fallback_icon(package)
          tree_applications.execute_script('addPackage("%s", "%s", "%s")' %(package.name, icon, package.pkg.candidate.summary))
-        #self._listed_packages = category.packages
-        #self._listed_packages.sort(self.package_compare)
-        #self._nb_displayed_packages = min(len(self._listed_packages), 500)
-        #self.display_packages_list(self._listed_packages[0:500])
-        # Load packages into self.tree_applications
-        #if (len(category.subcategories) == 0):
-            # Show packages
-        #    tree_applications = self.tree_applications
-        #else:
-        #    tree_applications = self.tree_mixed_applications
-
-        #self._model_applications = gtk.TreeStore(gtk.gdk.Pixbuf, str, gtk.gdk.Pixbuf, object)
-
-        #self.model_filter = self._model_applications.filter_new()
-        #self.model_filter.set_visible_func(self.visible_func)
-
-        
-
-
-        #tree_applications.set_model(self.model_filter)
-        #first = self._model_applications.get_iter_first()
 
         # Update the navigation bar
         if category == self.root_category:
@@ -1203,7 +1135,7 @@ class Application():
     def find_app_icon_alternative(self, package):
         icon_path = None
         if package.pkg.is_installed:
-            icon_path = "/usr/share/linuxmint/mintinstall/installed/%s" % package.name
+            icon_path = "/usr/share/sc/installed/%s" % package.name
             if os.path.exists(icon_path + ".png"):
                 icon_path = icon_path + ".png"
             elif os.path.exists(icon_path + ".xpm"):
@@ -1220,7 +1152,7 @@ class Application():
                     icon_path = iconInfo.get_filename()
             else:
                 # Try mintinstall-icons then
-                icon_path = "/usr/share/linuxmint/mintinstall/icons/%s" % package.name
+                icon_path = "/usr/share/sc/icons/%s" % package.name
                 if os.path.exists(icon_path + ".png"):
                     icon_path = icon_path + ".png"
                 elif os.path.exists(icon_path + ".xpm"):
@@ -1253,9 +1185,9 @@ class Application():
         else:
             # Try mintinstall-icons then
             if package.pkg.is_installed:
-                icon_path = "/usr/share/linuxmint/mintinstall/icons/installed/%s" % package.name
+                icon_path = "/usr/share/sc/icons/installed/%s" % package.name
             else:
-                icon_path = "/usr/share/linuxmint/mintinstall/icons/%s" % package.name
+                icon_path = "/usr/share/sc/icons/%s" % package.name
                 
             if os.path.exists(icon_path + ".png"):
                 icon_path = icon_path + ".png"
@@ -1380,21 +1312,6 @@ class Application():
         subs['font_style'] = font_description.get_style().value_nick        
         subs['font_size'] = font_description.get_size() / 1024      
 
-        if self.prefs["username"] != "":
-            for review in package.reviews:
-                if review.username == self.prefs["username"]:
-                    subs['comment'] = review.comment
-                    subs['score'] = review.rating
-
-        score_options = ["", _("Hate it"), _("Not a fan"), _("So so"), _("Like it"), _("Awesome!")]
-        subs['score_options'] = ""
-        for score in range(6):
-            if (score == subs['score']):
-                option = "<option value=%d %s>%s</option>" % (score, "SELECTED", score_options[score])
-            else:
-                option = "<option value=%d %s>%s</option>" % (score, "", score_options[score])
-
-            subs['score_options'] = subs['score_options'] + option
 
         subs['iconbig'] = self.find_large_app_icon(package)
 
@@ -1517,8 +1434,8 @@ class Application():
 
 if __name__ == "__main__":
     os.system("mkdir -p " + home + "/.linuxmint/mintinstall/screenshots/")
-    splash_process = Popen("/usr/lib/sc/splash.py")
+    #splash_process = Popen("/usr/lib/sc/splash.py")
     model = Classes.Model()
     Application()
-    os.system("kill -9 %d" % splash_process.pid)
+   #os.system("kill -9 %d" % splash_process.pid)
     gtk.main()

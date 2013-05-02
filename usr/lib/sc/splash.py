@@ -11,7 +11,7 @@ import apt
 print os.getpid()
 
 # i18n
-gettext.install("mintinstall", "/usr/share/locale")
+gettext.install("sc", "/usr/share/locale")
 
 # Build the GUI
 gladefile = "/usr/lib/sc/splash.glade"
