@@ -1,13 +1,9 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-import Classes
-import sys, os, commands, gtk
+import Classes, sys, os, commands, gtk
 import gtk.glade
-import pygtk
-import gobject
-import thread
-import gettext
+import pygtk, gobject, thread, gettext
 import tempfile
 import threading
 import webkit
@@ -302,6 +298,7 @@ class Application():
         wTree.get_widget("main_window").set_icon_from_file("/usr/lib/sc/icon.svg")
         wTree.get_widget("main_window").connect("delete_event", self.close_application)
         
+        
         self.main_window = wTree.get_widget("main_window")
 
         self.apt_client = AptClient()
@@ -576,18 +573,23 @@ class Application():
                 self.apt_client.remove_package(package.pkg.name)
             else:
                 self.apt_client.install_package(package.pkg.name)
-    
+    def get_screenshot(self, package_name):
+        #http://screenshots.debian.net/screenshot/synaptic
+        ##http://screenshots.debian.net/thumbnail/synaptic
+        os.system("mkdir -p ~/.screenshots/")
+        if os.path.isfile("/root/.screenshots/" + package_name + ".png") == False:
+            os.system("wget -O ~/.screenshots/" + package_name + ".png http://screenshots.debian.net/screenshot/" + package_name)
+        return "/root/.screenshots/" + package_name + ".png"
+        
     def on_screenshot_clicked(self):
         package = self.current_package
-        screenshot_window = self.wTree.get_widget("screenshot_window")
-        screenshot_window.show_all()
-        #if package is not None:
-        #    template = open("/usr/lib/sc/data/templates/ScreenshotView.html").read()
-        #    subs = {}
-        #    subs['appname'] = self.current_package.pkg.name
-        #    html = string.Template(template).safe_substitute(subs)
-        #    self.screenshotBrowser.load_html_string(html, "file:/")
-        #    self.navigation_bar.add_with_id(_("Screenshot"), self.navigate, self.NAVIGATION_SCREENSHOT, "screenshot")
+        gladefile = "/usr/lib/sc/sc.glade"
+        wTree = gtk.glade.XML(gladefile, "screenshot_window")
+        #wTree.get_widget("screenshot_window").connect("delete_event", close_window, wTree.get_widget("screenshot_window"))
+        #wTree.get_widget("button_screen_close").connect("clicked", close_window, wTree.get_widget("screenshot_window"))
+        wTree.get_widget("image_screen").set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(self.get_screenshot(self.current_package.pkg.name)))
+        #wTree.get_widget("button_screen").connect("clicked", close_window, wTree.get_widget("screenshot_window"))      
+        wTree.get_widget("screenshot_window").show_all()
 
     def on_website_clicked(self):
         package = self.current_package
@@ -829,10 +831,10 @@ class Application():
                icon = self.find_fallback_icon(package)
          summary = ""
          if package.pkg.candidate is not None:
-         	summary = package.pkg.candidate.summary
-         	summary = unicode(summary, 'UTF-8', 'replace')
-         	summary = summary.replace("<", "&lt;")
-         	summary = summary.replace("&", "&amp;")
+                summary = package.pkg.candidate.summary
+                summary = unicode(summary, 'UTF-8', 'replace')
+                summary = summary.replace("<", "&lt;")
+                summary = summary.replace("&", "&amp;")
          tree_applications.execute_script('addPackage("%s", "%s", "%s")' %(package.name, icon, summary))
          #except: pass
         # Update the navigation bar
@@ -956,8 +958,8 @@ class Application():
                 visible = True
             else:
                 if (package.pkg.candidate is not None):
-                	if (terms.upper() in package.pkg.candidate.summary.upper()):
-                		visible = True
+                        if (terms.upper() in package.pkg.candidate.summary.upper()):
+                               visible = True
 
 
             if visible:
@@ -1002,7 +1004,7 @@ class Application():
         package = model.get_value(iter, 3)
         if package is not None:
             if package.pkg is not None:
-            	return True
+                return True
         return False
 
     @print_timing
@@ -1147,10 +1149,7 @@ class Application():
             return 1
 
 if __name__ == "__main__":
-    #os.system("mkdir -p " + home + "/.linuxmint/mintinstall/screenshots/")
-    #splash_process = Popen("/usr/lib/sc/splash.py")
     model = Classes.Model()
     Application()
-    #os.system("kill -9 %d" % splash_process.pid)
+
     gtk.main()
-l
