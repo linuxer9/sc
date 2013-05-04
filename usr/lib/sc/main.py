@@ -2,8 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import Classes
-import sys, os, commands
-import gtk
+import sys, os, commands, gtk
 import gtk.glade
 import pygtk
 import gobject
