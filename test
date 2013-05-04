@@ -1,5 +1,11 @@
 #!/bin/bash
 
-sudo rm -rf /usr/lib/sc
-sudo cp -R usr /
-sudo sc
+sudo apt-get remove > /dev/null
+if [ $? -eq '0' ];
+then
+  sudo rm -rf /usr/lib/sc
+	sudo cp -R usr /
+	sudo sc
+else
+	echo "Please close any other dpkg apps before running SC."
+fi
