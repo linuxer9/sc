@@ -41,22 +41,66 @@ function Clear() {
 }
  </script>
  <style>
-body { margin: 0; font: message-box;}
-.pack:active {
- background-color:#ccc;
- }
-#page a:nth-child(odd) {  background-color:#fff; }
-#page a:nth-child(even) { background-color:#F8F7F5; }
- .pack {
-    margin-bottom: 0px;
-    overflow: hidden;
-    padding: 7px;
-    transition: all 0.7s ease 0s;
-    height: 48px;
-    font-size: 16px;
-    font-weight: bold;
-     display: block;
+
+html {height:100%; overflow-x :hidden; -webkit-user-select: none; cursor:default; -webkit-font-smoothing: antialiased;}
+body {
+	background-image: url("/usr/lib/sc/data/noise.png");
+	margin:12px;
+	font:12px/15px sans-serif;
+	color:#8a8a8a;
+	text-align: right;
+
 }
+
+.pack {
+	color: #000;
+    font-weight: bold;
+	font-size: 13.5px;
+    display: inline;
+	height: 100px;
+    border-color: transparent;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 200px;
+    padding-top: 5px;
+    margin-right: 10px;
+    position: relative;
+    cursor:pointer;
+    transition: all .50s ease-in-out;
+    -webkit-transition: all .25s ease-in-out;
+}
+
+.pack:hover {
+
+    border-color: rgba(23, 51, 78, 0.15) rgba(23, 51, 78, 0.17) rgba(23, 51, 78, 0.2);
+    background-color: rgba(3, 14, 27, 0.03);
+}
+.launcher:active {
+   background-image: linear-gradient(rgba(3, 14, 27, 0.02), rgba(3, 14, 27, 0.05));
+    border-color: rgba(23, 51, 78, 0.2) rgba(23, 51, 78, 0.23) rgba(23, 51, 78, 0.25);
+    -webkit-box-shadow: 0 1px 1px rgba(3, 14, 27, 0.05) inset, 0 0 1px rgba(3, 14, 27, 0.1) inset;
+    -webkit-transition-duration: 0;
+}
+
+.pack span {
+    margin-right: 7px;
+    margin-top: 30px;
+    position: absolute;
+}
+.pack img {
+	height: 32px;
+	width: 32px;
+	float: left;
+}
+.pack:hover img {
+	opacity: 0.8;
+}
+
+#page a:nth-child(odd) {  background-color:#fff; margin-top: 10px; }
+#page a:nth-child(even) { background-color:#F8F7F5; margin-top: 10px; }
 
 .pack span {
     color: #5F5F5F;
@@ -64,14 +108,7 @@ body { margin: 0; font: message-box;}
     font-size: 11px;
     font-weight: normal;
 }
-.pack_icon {
 
-    float: right;
-    margin-left: 10px;
-	 width: 32px;
-	 height: 32px;
- 
-}
 </style>
  </head>
 
