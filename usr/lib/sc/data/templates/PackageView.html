@@ -92,11 +92,12 @@
  </script>
 
   <style type="text/css">
-    *{ -khtml-user-drag:none;}
+    *{ -khtml-user-drag:none; 	}
     body {
-      background-color: #efefef;
-      background-image: url('/usr/lib/linuxmint/mintInstall/data/templates/bg-gradient.jpg');
-      background-repeat: repeat-x;        
+background-image: url("/usr/lib/sc/data/noise.png");
+      background-repeat: repeat-x repeat-y;        
+		border-radius: 20px;
+        border: 1px solid #000;
       margin-left: 20px; 
       margin-right: 20px; 
       padding: 1em 12px;   
@@ -104,17 +105,17 @@
       font-size:${font_size};
       font-weight:${font_weight};
       font-style:${font_style};
+	  text-align: center;
     }
-    #wrap{ margin:0 auto; padding: 0 15px 0 15px; }
+    #wrap{ margin:0 auto; padding: 0 15px 0 15px; background-color: #fff;}
     #header{ padding-left:76px }
    
     h1 { 
+	  text-align: center;
       position: relative;
       top: 0;
       left: 0;
-      font-size: 50px;
-      #line-height: 50px;
-      text-shadow: -3px 0 4px #000;
+      font-size: 22px;
       margin-bottom: 0px;
     padding-bottom: 0px;
       }
@@ -123,6 +124,7 @@
     h1 a:visited,
     h1 a:hover,
     h1 a:active {
+	  font-size: 13px;
       position: absolute;
       top: 0; z-index: 2;
       color: #000;
@@ -131,10 +133,10 @@
     h1:after {
       content: "$appname";
       color: #000;
-      text-shadow: 3px 3px 1px #666;
       }
   
     h2 {
+	  text-align: center;
       font-size:80%;
       margin:0 0 0.3em 0;
       font-weight:normal;
@@ -160,9 +162,11 @@
       clear:left;
     }
     #icon {
+	  text-align: center;
       margin-left:-76px;
-      width:64px;
-      height:64px;
+      width:96px;
+      height:96px;
+	  float: right;
       z-index:-1;      
       position:absolute;
       -webkit-background-clip: border-box;
@@ -171,8 +175,8 @@
     }
     
     .pod {
-        border: 1px solid #6aa5d7;
-        background-color: #adcde9;
+        border: 1px solid #00CCFF;
+		border-radius: 4px;
         margin-bottom: 1em;
         _zoom: 100%;
         *zoom: 100%;
@@ -185,11 +189,12 @@
     .screenshot {
       overflow:hidden;
       -webkit-box-shadow: rgba(0, 0, 0, 0.4) -4px 2px 10px;
-      
+      	border-radius: 20px;
+        border: 2px solid #6aa5d7;
       display:inline-block;
       max-width:500px;
       max-height:375px;
-      
+      margin-top: 15px;
       cursor: -webkit-zoom-in;
       
       text-align:center;
@@ -198,6 +203,7 @@
     
     
     #text {
+		text-align: center;
       float:left; 
       padding-left:86px;
     }   
@@ -229,13 +235,13 @@
     }  
     #wrapper h2{
       padding:-15px;
-      color: #4a4a4a;
+      color: #fff;
       font-weight:normal;
       font-size:1em;      
       padding:0.2em  0.8em;
       margin: .25em 0;
      
-      background-color:#dad7d3;
+      background-color:#fff;
        -webkit-border-top-left-radius: 5px;
        -webkit-border-top-right-radius: 5px;
     }
@@ -243,62 +249,88 @@
         margin-top:1em;
         clear:both;
         border-radius: 5px;
-        background-color:#f7f7f7;        
+        background-color:#fff;        
         -webkit-box-shadow: rgba(0, 0, 0, 0.2) -1px 1px 4px;
     }
     #inner{
       padding:15px;
       font-size:70%; 
     }
+	
+	.packageinfor{
+	background-color: ##F0F0F0;
+}
  </style>
 
 </head>
     
 <body class="${body_class}">
 
-<table width="100%">
-    <tr>
-    <td valign="absmiddle" align="center"><img src="$iconbig"/></td>
-    <td valign="absmiddle" align="left" nowrap><h1><a href="#">$appname</a></h1><i><small>$summary</small></i></td>
-
-    </tr>
-</table>
-  <br/>
-    <div class="pod">
+					<div id="wrapper">
          <table width="100%">
          <tr>
-             <td align="left" valign="absmiddle"><img align=absmiddle src="$iconstatus"/>&nbsp;$action_button_description</td>
-             <td align="right" valign="absmiddle">
-              <input type="button" id="button_${action_button_value}" 
-              class="action_button"
-          alt="$action_button_label"
-              value="$action_button_label"
-              onclick='action_button_clicked()'
-          />
-             </td>
+             
+
+
          </tr>
          </table>
              
-    </div>
+
+
+<table width="100%">
+    <tr>
+    <td valign="absmiddle" align="right"><img src="$iconbig"/></td>
+    <td valign="absmiddle" align="center" nowrap><h1><a href="#">$appname</a></h1><i><small>$summary</small></i><td align="left" valign="absmiddle"><img align=absmiddle src="$iconstatus"/>&nbsp;$action_button_description <input type="button" id="button_${action_button_value}" 
+              class="action_button"
+          alt="$action_button_label"
+              value="$action_button_label"
+              onclick='action_button_clicked()'/</td></td>
+
+
+
+
+
+
+    </tr>
+
+</table>
+ 
+
+<div id="screenshot-wrap">
+                <div id="screenshot" class="screenshot">
+                    <a href="javascript:action_screenshot_clicked()"><img id="screenshot_thumbnail_img" class="screenshot_thumbnail" onerror="this.style.display='none'" src="http://community.linuxmint.com/thumbnail.php?w=250&pic=/var/www/community.linuxmint.com/img/screenshots/$appname.png"></a>
+                </div>
+            </div> 
 
 <p>
 <div id="description">
 <table width="100%" cellpadding="3">
-    <tr>
+
+     
+
+
+
         <td valign="top">$description<br/><br/><i><a href="javascript:action_website_clicked()">$homepage</a></i></td>
+
         <td valign="top">
-            <div id="screenshot-wrap">
-                <div id="screenshot" class="screenshot">
-                    <a href="javascript:action_screenshot_clicked()"><img id="screenshot_thumbnail_img" class="screenshot_thumbnail" onerror="this.style.display='none'" src="http://community.linuxmint.com/thumbnail.php?w=250&pic=/var/www/community.linuxmint.com/img/screenshots/$appname.png"></a>
-                </div>
-            </div>
+            
         </td>
-    </tr>
+
+
+              
+             </td>
+
 </table>    
-                     	
+               	
 
 </div>
 </p>
+
+
+</div>
+    </div>
+   
+
 
 
     
