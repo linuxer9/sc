@@ -28,7 +28,6 @@ from datetime import datetime
 from subprocess import Popen, PIPE
 from widgets.pathbar2 import NavigationBar
 from widgets.searchentry import SearchEntry
-from user import home
 import base64
 
 
@@ -38,8 +37,6 @@ if os.getuid() != 0:
 
 pygtk.require("2.0")
 
-sys.path.append('/usr/lib/linuxmint/common')
-from configobj import ConfigObj
 
 def print_timing(func):
     def wrapper(*arg):
@@ -61,15 +58,15 @@ architecture = commands.getoutput("uname -a")
 if (architecture.find("x86_64") >= 0):
     import ctypes
     libc = ctypes.CDLL('libc.so.6')
-    libc.prctl(15, 'mintinstall', 0, 0, 0)
+    libc.prctl(15, 'sc', 0, 0, 0)
 else:
     import dl   
     if os.path.exists('/lib/libc.so.6'):
         libc = dl.open('/lib/libc.so.6')
-        libc.call('prctl', 15, 'mintinstall', 0, 0, 0)
+        libc.call('prctl', 15, 'sc', 0, 0, 0)
     elif os.path.exists('/lib/i386-linux-gnu/libc.so.6'):
         libc = dl.open('/lib/i386-linux-gnu/libc.so.6')
-        libc.call('prctl', 15, 'mintinstall', 0, 0, 0)
+        libc.call('prctl', 15, 'sc', 0, 0, 0)
 
 gtk.gdk.threads_init()
 
@@ -258,17 +255,10 @@ class Package:
         self.name = name
         self.pkg = pkg
         self.categories = []
-        self.score = 0
-        self.avg_rating = 0
 
 
-    def update_stats(self):
-        points = 0
-        sum_rating = 0
 
-        self.avg_rating = 0
 
-        self.score = points
 
 
 
@@ -325,94 +315,6 @@ class Application():
             self.export_listing()
             sys.exit(0)
 
-        self.prefs = self.read_configuration()
-
-        # Build the menu
-        #fileMenu = gtk.MenuItem(_("_File"))
-        #fileSubmenu = gtk.Menu()
-        #fileMenu.set_submenu(fileSubmenu)
-        #closeMenuItem = gtk.ImageMenuItem(gtk.STOCK_CLOSE)
-        #closeMenuItem.get_child().set_text(_("Close"))
-        #closeMenuItem.connect("activate", self.close_application)
-        #fileSubmenu.append(closeMenuItem)
-
-        #editMenu = gtk.MenuItem(_("_Edit"))
-        #editSubmenu = gtk.Menu()
-        #editMenu.set_submenu(editSubmenu)
-        #prefsMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-        #prefsMenuItem.get_child().set_text(_("Preferences"))
-        #prefsMenu = gtk.Menu()
-        #prefsMenuItem.set_submenu(prefsMenu)
-
-        #searchInSummaryMenuItem = gtk.CheckMenuItem(_("Search in packages summary (slower search)"))
-        #searchInSummaryMenuItem.set_active(self.prefs["search_in_summary"])
-        #searchInSummaryMenuItem.connect("toggled", self.set_search_filter, "search_in_summary")
-
-        #searchInDescriptionMenuItem = gtk.CheckMenuItem(_("Search in packages description (even slower search)"))
-        #searchInDescriptionMenuItem.set_active(self.prefs["search_in_description"])
-        #searchInDescriptionMenuItem.connect("toggled", self.set_search_filter, "search_in_description")
-
-        #openLinkExternalMenuItem = gtk.CheckMenuItem(_("Open links using the web browser"))
-        #openLinkExternalMenuItem.set_active(self.prefs["external_browser"])
-        #openLinkExternalMenuItem.connect("toggled", self.set_external_browser)
-
-        #searchWhileTypingMenuItem = gtk.CheckMenuItem(_("Search while typing"))
-        #searchWhileTypingMenuItem.set_active(self.prefs["search_while_typing"])
-        #searchWhileTypingMenuItem.connect("toggled", self.set_search_filter, "search_while_typing")
-
-        #prefsMenu.append(searchInSummaryMenuItem)
-        #prefsMenu.append(searchInDescriptionMenuItem)
-        #prefsMenu.append(openLinkExternalMenuItem)
-        #prefsMenu.append(searchWhileTypingMenuItem)
-
-        #prefsMenuItem.connect("activate", open_preferences, treeview_update, statusIcon, wTree)
-        #editSubmenu.append(prefsMenuItem)
-
-        #accountMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-        #accountMenuItem.get_child().set_text(_("Account information"))
-        #accountMenuItem.connect("activate", self.open_account_info)
-        #editSubmenu.append(accountMenuItem)
-
-        #if os.path.exists("/usr/bin/software-properties-gtk") or os.path.exists("/usr/bin/software-properties-kde"):
-        #    sourcesMenuItem = gtk.ImageMenuItem(gtk.STOCK_PREFERENCES)
-        #    sourcesMenuItem.set_image(gtk.image_new_from_file("/usr/lib/sc/software-properties.png"))
-        #    sourcesMenuItem.get_child().set_text(_("Software sources"))
-        #    sourcesMenuItem.connect("activate", self.open_repositories)
-        #    editSubmenu.append(sourcesMenuItem)
-
-        #viewMenu = gtk.MenuItem(_("_View"))
-        #viewSubmenu = gtk.Menu()
-        #viewMenu.set_submenu(viewSubmenu)
-
-        #availablePackagesMenuItem = gtk.CheckMenuItem(_("Available packages"))
-        #availablePackagesMenuItem.set_active(self.prefs["available_packages_visible"])
-        #availablePackagesMenuItem.connect("toggled", self.set_filter, "available_packages_visible")
-
-        #installedPackagesMenuItem = gtk.CheckMenuItem(_("Installed packages"))
-        #installedPackagesMenuItem.set_active(self.prefs["installed_packages_visible"])
-        #installedPackagesMenuItem.connect("toggled", self.set_filter, "installed_packages_visible")
-
-        #viewSubmenu.append(availablePackagesMenuItem)
-        #viewSubmenu.append(installedPackagesMenuItem)
-
-
-        #browser.connect("activate", browser_callback)
-        #browser.show()
-        #wTree.get_widget("menubar1").append(fileMenu)
-        #wTree.get_widget("menubar1").append(editMenu)
-        #wTree.get_widget("menubar1").append(viewMenu)
-
-        #toolbar = wTree.get_widget("toolbar1")
-        
-        #quittb = gtk.ToolButton(gtk.STOCK_QUIT)
-        #quittb.connect("clicked", self.close_application)
-        #quittb.set_label("quit")
-        #quittb.set_is_important(True)
-        #abouttb = gtk.ToolButton(gtk.STOCK_ABOUT)
-
-        #srctb.set_icon_widget(image)
-        #toolbar.insert(quittb, 0)
-        #toolbar.insert(abouttb, 1)
 
         # Build the applications tables
         self.tree_applications = webkit.WebView()
@@ -431,7 +333,7 @@ class Application():
 
         self.navigation_bar = NavigationBar()
         self.searchentry = SearchEntry()
-        self.searchentry.connect("terms-changed", self.on_search_terms_changed)
+        #self.searchentry.connect("terms-changed", self.on_search_terms_changed)
         self.searchentry.connect("activate", self.on_search_entry_activated)
         top_hbox = gtk.HBox()
         top_hbox.pack_start(self.navigation_bar, padding=6)
@@ -453,21 +355,13 @@ class Application():
 
         # Build the category browsers
         self.browser = webkit.WebView()
-        template = open("/usr/lib/sc/data/templates/CategoriesView.html").read()
-        subs = {'header': _("Categories")}      
-        subs['subtitle'] = _("Please choose a category")
-        subs['package_num'] = _("%d packages are currently available") % len(self.packages)
-        html = string.Template(template).safe_substitute(subs)
+        html = open("/usr/lib/sc/data/templates/CategoriesView.html").read()
         self.browser.load_html_string(html, "file:/")
         self.browser.connect("load-finished", self._on_load_finished)
         self.browser.connect('title-changed', self._on_title_changed)
         wTree.get_widget("scrolled_categories").add(self.browser)
 
         self.browser2 = webkit.WebView()
-        template = open("/usr/lib/sc/data/templates/SubCategoriesView.html").read()
-        subs = {'header': _("Categories")}
-        subs['subtitle'] = _("Please choose a sub-category")
-        html = string.Template(template).safe_substitute(subs)
         self.browser2.load_html_string(html, "file:/")
         self.browser2.connect('title-changed', self._on_title_changed)
         wTree.get_widget("scrolled_mixed_categories").add(self.browser2)
@@ -477,28 +371,17 @@ class Application():
 
         self.packageBrowser.connect('title-changed', self._on_title_changed)
 
-        self.screenshotBrowser = webkit.WebView()
-        wTree.get_widget("scrolled_screenshot").add(self.screenshotBrowser)
-
-        self.websiteBrowser = webkit.WebView()
-        wTree.get_widget("scrolled_website").add(self.websiteBrowser)
-
-
         # kill right click menus in webkit views
         self.browser.connect("button-press-event", lambda w, e: e.button == 3)
         self.browser2.connect("button-press-event", lambda w, e: e.button == 3)
         self.packageBrowser.connect("button-press-event", lambda w, e: e.button == 3)
-        self.screenshotBrowser.connect("button-press-event", lambda w, e: e.button == 3)
 
-        #wTree.get_widget("label_ongoing").set_text(_("No ongoing actions"))
+
         wTree.get_widget("label_transactions_header").set_text(_("Active tasks:"))
         wTree.get_widget("progressbar1").hide_all()
 
         wTree.get_widget("button_transactions").connect("clicked", self.show_transactions)
-        
-        wTree.get_widget("tree_applications_scrolledview").get_vadjustment().connect("value-changed", self._on_tree_applications_scrolled)
         self._load_more_timer = None
-
         wTree.get_widget("main_window").show_all()
     
     
@@ -507,140 +390,8 @@ class Application():
         if terms != "":
             self.show_search_results(terms)
     
-    def on_search_terms_changed(self, searchentry, terms):
-        if terms != "" and self.prefs["search_while_typing"]:
-            self.show_search_results(terms)
-
-    def set_filter(self, checkmenuitem, configName):
-        config = ConfigObj(home + "/.linuxmint/mintinstall.conf")
-        if (config.has_key('filter')):
-            config['filter'][configName] = checkmenuitem.get_active()
-        else:
-            config['filter'] = {}
-            config['filter'][configName] = checkmenuitem.get_active()
-        config.write()
-        self.prefs = self.read_configuration()
-        if self.model_filter is not None:
-            self.model_filter.refilter()
-
-    def set_search_filter(self, checkmenuitem, configName):
-        config = ConfigObj(home + "/.linuxmint/mintinstall.conf")
-        if (config.has_key('search')):
-            config['search'][configName] = checkmenuitem.get_active()
-        else:
-            config['search'] = {}
-            config['search'][configName] = checkmenuitem.get_active()
-        config.write()
-        self.prefs = self.read_configuration()
-        if (self.searchentry.get_text() != ""):
-            self.show_search_results(self.searchentry.get_text())
-
-    def set_external_browser(self, checkmenuitem):
-        config = ConfigObj(home + "/.linuxmint/mintinstall.conf")
-        config['external_browser'] = checkmenuitem.get_active()
-        config.write()
-        self.prefs = self.read_configuration()
-
-    def read_configuration(self):
-
-        config = ConfigObj(home + "/.linuxmint/mintinstall.conf")
-        prefs = {}
-
-        #Read account info
-        try:
-            prefs["username"] = config['account']['username']
-            prefs["password"] = config['account']['password']
-        except:
-            prefs["username"] = ""
-            prefs["password"] = ""
-
-
-        #Read filter info
-        try:
-            prefs["available_packages_visible"] = (config['filter']['available_packages_visible'] == "True")
-        except:
-            prefs["available_packages_visible"] = True
-        try:
-            prefs["installed_packages_visible"] = (config['filter']['installed_packages_visible'] == "True")
-        except:
-            prefs["installed_packages_visible"] = True
-
-        #Read search info
-        try:
-            prefs["search_in_summary"] = (config['search']['search_in_summary'] == "True")
-        except:
-            prefs["search_in_summary"] = True
-        try:
-            prefs["search_in_description"] = (config['search']['search_in_description'] == "True")
-        except:
-            prefs["search_in_description"] = False
-        try:
-            prefs["search_while_typing"] = (config['search']['search_while_typing'] == "True")
-        except:
-            prefs["search_while_typing"] = True
-
-        #External browser
-        try:
-            prefs["external_browser"] = (config['external_browser'] == "True")
-        except:
-            prefs["external_browser"] = False
-
-        return prefs
-
-    def open_repositories(self, widget):
-        launcher = commands.getoutput("/usr/lib/linuxmint/common/mint-which-launcher.py")
-        if os.path.exists("/usr/bin/software-properties-gtk"):
-            os.system("%s /usr/bin/software-properties-gtk" % launcher)
-        elif os.path.exists("/usr/bin/software-properties-kde"):
-            os.system("%s /usr/bin/software-properties-kde" % launcher)
-        self.close_application(None, None, 9) # Status code 9 means we want to restart ourselves
-
     def close_window(self, widget, window):
         window.hide()
-
-    def update_account_info(self, entry, prop, configName):
-        config = ConfigObj(home + "/.linuxmint/mintinstall.conf")
-        if (not config.has_key('account')):
-            config['account'] = {}
-
-        if (configName == "password"):
-            text = base64.b64encode(entry.props.text)
-        else:
-            text = entry.props.text
-
-        config['account'][configName] = text
-        config.write()
-        self.prefs = self.read_configuration()
-
-    def open_about(self, widget):
-        dlg = gtk.AboutDialog()
-        dlg.set_title(_("About"))
-        dlg.set_program_name("mintInstall")
-        dlg.set_comments(_("Software Manager"))
-        try:
-            h = open('/usr/share/common-licenses/GPL','r')
-            s = h.readlines()
-            gpl = ""
-            for line in s:
-                gpl += line
-            h.close()
-            dlg.set_license(gpl)
-        except Exception, detail:
-            print detail
-        try:
-            version = commands.getoutput("/usr/lib/linuxmint/common/version.py mintinstall")
-            dlg.set_version(version)
-        except Exception, detail:
-            print detail
-
-        dlg.set_authors(["Clement Lefebvre <root@linuxmint.com>"])
-        dlg.set_icon_from_file("/usr/lib/sc/icon.svg")
-        dlg.set_logo(gtk.gdk.pixbuf_new_from_file("/usr/lib/sc/icon.svg"))
-        def close(w, res):
-            if res == gtk.RESPONSE_CANCEL:
-                w.hide()
-        dlg.connect("response", close)
-        dlg.show()
 
     def export_listing(self):
         # packages
@@ -794,7 +545,6 @@ class Application():
     
     def do_close_application(self, exit_code):
         if exit_code == 0:
-            # Not happy with Python when it comes to closing threads, so here's a radical method to get what we want.
             pid = os.getpid()
             os.system("kill -9 %s &" % pid)
         else:            
@@ -830,56 +580,19 @@ class Application():
     
     def on_screenshot_clicked(self):
         package = self.current_package
-        if package is not None:
-            template = open("/usr/lib/sc/data/templates/ScreenshotView.html").read()
-            subs = {}
-            subs['appname'] = self.current_package.pkg.name
-            html = string.Template(template).safe_substitute(subs)
-            self.screenshotBrowser.load_html_string(html, "file:/")
-            self.navigation_bar.add_with_id(_("Screenshot"), self.navigate, self.NAVIGATION_SCREENSHOT, "screenshot")
+        screenshot_window = self.wTree.get_widget("screenshot_window")
+        screenshot_window.show_all()
+        #if package is not None:
+        #    template = open("/usr/lib/sc/data/templates/ScreenshotView.html").read()
+        #    subs = {}
+        #    subs['appname'] = self.current_package.pkg.name
+        #    html = string.Template(template).safe_substitute(subs)
+        #    self.screenshotBrowser.load_html_string(html, "file:/")
+        #    self.navigation_bar.add_with_id(_("Screenshot"), self.navigate, self.NAVIGATION_SCREENSHOT, "screenshot")
 
     def on_website_clicked(self):
         package = self.current_package
-        if package is not None:
-            if self.prefs['external_browser']:
-                os.system("xdg-open " + self.current_package.pkg.candidate.homepage + " &")
-            else:
-                self.websiteBrowser.open(self.current_package.pkg.candidate.homepage)
-                self.navigation_bar.add_with_id(_("Website"), self.navigate, self.NAVIGATION_WEBSITE, "website")
-
-    def on_reviews_clicked(self):
-        package = self.current_package
-        if package is not None:
-            template = open("/usr/lib/sc/data/templates/ReviewsView.html").read()
-            subs = {}
-            subs['appname'] = self.current_package.pkg.name
-            subs['reviewsLabel'] = _("Reviews")
-            font_description = gtk.Label("pango").get_pango_context().get_font_description()
-            subs['font_family'] = font_description.get_family()
-            try:
-                subs['font_weight'] = font_description.get_weight().real
-            except:
-                subs['font_weight'] = font_description.get_weight()   
-            subs['font_style'] = font_description.get_style().value_nick        
-            subs['font_size'] = font_description.get_size() / 1024    
-            html = string.Template(template).safe_substitute(subs)
-            self.reviewsBrowser.load_html_string(html, "file:/")
-            self.reviewsBrowser.connect("load-finished", self._on_reviews_load_finished, package.reviews)
-            self.navigation_bar.add_with_id(_("Reviews"), self.navigate, self.NAVIGATION_REVIEWS, "reviews")
-
-    def _on_reviews_load_finished(self, view, frame, reviews):
-        #Add the reviews
-        self.reviewsBrowser.execute_script('clearReviews()')
-        reviews.sort(key=lambda x: x.date, reverse=True)
-        for review in reviews:
-            rating = "/usr/lib/sc/data/small_" + str(review.rating) + ".png"
-            comment = review.comment.strip()
-            comment = comment.replace("'", "\'")
-            comment = comment.replace('"', '\"')
-            comment = comment.capitalize()
-            comment = unicode(comment, 'UTF-8', 'replace')
-            review_date = datetime.fromtimestamp(review.date).strftime("%Y.%m.%d")
-            self.reviewsBrowser.execute_script('addReview("%s", "%s", "%s", "%s")' % (review_date, review.username, rating, comment))
+        os.system("xdg-open " + self.current_package.pkg.candidate.homepage + " &")
 
     def _on_title_changed(self, view, frame, title):
         # no op - needed to reset the title after a action so that
@@ -1115,8 +828,14 @@ class Application():
                icon = self.find_app_icon_alternative(package)
             except:
                icon = self.find_fallback_icon(package)
-         tree_applications.execute_script('addPackage("%s", "%s", "%s")' %(package.name, icon, package.pkg.candidate.summary))
-
+         summary = ""
+         if package.pkg.candidate is not None:
+         	summary = package.pkg.candidate.summary
+         	summary = unicode(summary, 'UTF-8', 'replace')
+         	summary = summary.replace("<", "&lt;")
+         	summary = summary.replace("&", "&amp;")
+         tree_applications.execute_script('addPackage("%s", "%s", "%s")' %(package.name, icon, summary))
+         #except: pass
         # Update the navigation bar
         if category == self.root_category:
             self.navigation_bar.add_with_id(category.name, self.navigate, self.NAVIGATION_HOME, category)
@@ -1151,7 +870,7 @@ class Application():
                 if iconInfo and os.path.exists(iconInfo.get_filename()):
                     icon_path = iconInfo.get_filename()
             else:
-                # Try mintinstall-icons then
+                # Try our-icons then
                 icon_path = "/usr/share/sc/icons/%s" % package.name
                 if os.path.exists(icon_path + ".png"):
                     icon_path = icon_path + ".png"
@@ -1183,7 +902,7 @@ class Application():
                 im.save (tmpFile.name + ".png")             
                 icon_path = tmpFile.name + ".png"               
         else:
-            # Try mintinstall-icons then
+            # Try our-icons then
             if package.pkg.is_installed:
                 icon_path = "/usr/share/sc/icons/installed/%s" % package.name
             else:
@@ -1238,10 +957,9 @@ class Application():
                 visible = True
             else:
                 if (package.pkg.candidate is not None):
-                    if (self.prefs["search_in_summary"] and terms.upper() in package.pkg.candidate.summary.upper()):
-                        visible = True
-                    elif(self.prefs["search_in_description"] and terms.upper() in package.pkg.candidate.description.upper()):
-                        visible = True
+                	if (terms.upper() in package.pkg.candidate.summary.upper()):
+                		visible = True
+
 
             if visible:
                 iter = model_applications.insert_before(None, None)
@@ -1285,10 +1003,7 @@ class Application():
         package = model.get_value(iter, 3)
         if package is not None:
             if package.pkg is not None:
-                if (package.pkg.is_installed and self.prefs["installed_packages_visible"] == True):
-                    return True
-                elif (package.pkg.is_installed == False and self.prefs["available_packages_visible"] == True):
-                    return True
+            	return True
         return False
 
     @print_timing
@@ -1298,10 +1013,10 @@ class Application():
                 
         # Load package info
         subs = {}
-        subs['username'] = self.prefs["username"]
-        subs['password'] = self.prefs["password"]
-        subs['comment'] = ""
-        subs['score'] = 0
+        #subs['username'] = self.prefs["username"]
+        #subs['password'] = self.prefs["password"]
+        #subs['comment'] = ""
+        #subs['score'] = 0
         
         font_description = gtk.Label("pango").get_pango_context().get_font_description()
         subs['font_family'] = font_description.get_family()
@@ -1320,9 +1035,9 @@ class Application():
         subs['description'] = package.pkg.candidate.description
         subs['description'] = subs['description'].replace('\n','<br />\n')
         subs['summary'] = package.pkg.candidate.summary.capitalize()
-        subs['label_score'] = _("Score:")
-        subs['label_submit'] = _("Submit")
-        subs['label_your_review'] = _("Your review")
+        #subs['label_score'] = _("Score:")
+        #subs['label_submit'] = _("Submit")
+        #subs['label_your_review'] = _("Your review")
 
         impacted_packages = []    
 
@@ -1362,8 +1077,8 @@ class Application():
         subs['sizeLabel'] = _("Size:")
         subs['versionLabel'] = _("Version:")
         subs['impactLabel'] = _("Impact on packages:")
-        subs['reviewsLabel'] = _("Reviews")
-        subs['yourReviewLabel'] = _("Your review:")
+        #subs['reviewsLabel'] = _("Reviews")
+        #subs['yourReviewLabel'] = _("Your review:")
         subs['detailsLabel'] = _("Details")
         
         if package.pkg.is_installed:
@@ -1433,9 +1148,10 @@ class Application():
             return 1
 
 if __name__ == "__main__":
-    os.system("mkdir -p " + home + "/.linuxmint/mintinstall/screenshots/")
+    #os.system("mkdir -p " + home + "/.linuxmint/mintinstall/screenshots/")
     #splash_process = Popen("/usr/lib/sc/splash.py")
     model = Classes.Model()
     Application()
-   #os.system("kill -9 %d" % splash_process.pid)
+    #os.system("kill -9 %d" % splash_process.pid)
     gtk.main()
+l

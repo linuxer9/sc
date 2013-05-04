@@ -2,26 +2,6 @@
 <glade-interface>
   <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <widget class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="stock">gtk-help</property>
-    <property name="pixel_size">1</property>
-    <property name="icon-size">1</property>
-  </widget>
-  <widget class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="stock">gtk-find</property>
-    <property name="icon-size">1</property>
-  </widget>
-  <widget class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="stock">gtk-add</property>
-    <property name="icon-size">1</property>
-  </widget>
-  <widget class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="icon_name">software-properties</property>
-  </widget>
   <widget class="GtkWindow" id="main_window">
     <property name="window_position">center</property>
     <property name="default_width">734</property>
@@ -154,52 +134,20 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkScrolledWindow" id="scrolled_screenshot">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="position">4</property>
-                  </packing>
+                  <placeholder/>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label3">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Screenshot</property>
-                  </widget>
+                  <placeholder/>
                   <packing>
-                    <property name="position">4</property>
-                    <property name="tab_fill">False</property>
                     <property name="type">tab</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkScrolledWindow" id="scrolled_website">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="position">5</property>
-                  </packing>
+                  <placeholder/>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label4">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Website</property>
-                  </widget>
+                  <placeholder/>
                   <packing>
-                    <property name="position">5</property>
-                    <property name="tab_fill">False</property>
                     <property name="type">tab</property>
                   </packing>
                 </child>
