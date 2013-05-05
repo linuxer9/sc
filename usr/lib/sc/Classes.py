@@ -136,19 +136,4 @@ class Item:
 		self.reviews.append(review)
 		review.item = self
 
-class Review:
-	portal=None
-	user_id = ""
-	username = ""
-	item = None
-	comment = ""
-	rating = 3
-
-	def __init__(self, portal, item, rating, comment, user_id, username):
-		self.portal=portal
-		self.item=item
-		self.rating=rating
-		self.comment=comment
-		self.user_id=user_id
-		self.username=username
 
