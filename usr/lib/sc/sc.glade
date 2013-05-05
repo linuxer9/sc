@@ -201,10 +201,7 @@
                         <property name="vscrollbar_policy">automatic</property>
                         <property name="shadow_type">etched-in</property>
                         <child>
-                          <widget class="GtkTreeView" id="tree_search">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                          </widget>
+                          <placeholder/>
                         </child>
                       </widget>
                       <packing>
@@ -279,28 +276,11 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkScrolledWindow" id="scrolled_reviews">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">out</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="position">8</property>
-                  </packing>
+                  <placeholder/>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label5">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">Reviews</property>
-                  </widget>
+                  <placeholder/>
                   <packing>
-                    <property name="position">8</property>
-                    <property name="tab_fill">False</property>
                     <property name="type">tab</property>
                   </packing>
                 </child>

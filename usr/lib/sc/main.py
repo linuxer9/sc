@@ -263,21 +263,18 @@ class Application():
     PAGE_MIXED = 1
     PAGE_PACKAGES = 2
     PAGE_DETAILS = 3
-    PAGE_SCREENSHOT = 4
-    PAGE_WEBSITE = 5
-    PAGE_SEARCH = 6
-    PAGE_TRANSACTIONS = 7
+    PAGE_SEARCH = 4
+    PAGE_TRANSACTIONS = 5
 
 
     NAVIGATION_HOME = 1
-    NAVIGATION_SEARCH = 2
+    NAVIGATION_SEARCH = 7
     NAVIGATION_CATEGORY = 3
     NAVIGATION_SEARCH_CATEGORY = 4
     NAVIGATION_SUB_CATEGORY = 5
     NAVIGATION_SEARCH_SUB_CATEGORY = 6
     NAVIGATION_ITEM = 7
-    NAVIGATION_SCREENSHOT = 8
-    NAVIGATION_WEBSITE = 8
+
 
     if os.path.exists("/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"):
         FONT = "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"
@@ -318,13 +315,18 @@ class Application():
         template = open("/usr/lib/sc/data/templates/listView.html").read()
         self.tree_applications.load_html_string(template, "file:/")
         self.tree_applications.connect('title-changed', self._on_title_changed)
-        self.tree_mixed_applications = wTree.get_widget("tree_mixed_applications")
-        self.tree_search = wTree.get_widget("tree_search")
+        #self.tree_mixed_applications = wTree.get_widget("tree_mixed_applications")
+        self.tree_search = webkit.WebView()
+        self.tree_search.load_html_string(template, "file:/")
+        self.tree_search.connect('title-changed', self._on_title_changed)
+        wTree.get_widget("scrolled_search").add(self.tree_search)
         self.tree_transactions = wTree.get_widget("tree_transactions")
 
         
         #self.build_application_tree(self.tree_mixed_applications)
-        self.build_application_tree(self.tree_search)
+        #self.build_application_tree(self.tree_search)
+        self.loadHandlerID = -1
+        self.acthread = threading.Thread(target=self.cache_apt)
         self.build_transactions_tree(self.tree_transactions)
 
         self.navigation_bar = NavigationBar()
@@ -482,6 +484,7 @@ class Application():
         treeview.set_headers_visible(True)
         treeview.show()
 
+
     def show_selected(self, tree, path, column):
         self.main_window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))   
         self.main_window.set_sensitive(False)
@@ -528,11 +531,7 @@ class Application():
                     self.notebook.set_current_page(self.PAGE_PACKAGES)
             elif isinstance(destination, Package):
                 self.notebook.set_current_page(self.PAGE_DETAILS)
-            elif (destination == "screenshot"):
-                self.notebook.set_current_page(self.PAGE_SCREENSHOT)
 
-            else:
-                self.notebook.set_current_page(self.PAGE_WEBSITE)
 
 
     def close_application(self, window, event=None, exit_code=0):
@@ -939,19 +938,21 @@ class Application():
 
     def show_search_results(self, terms):
         self._current_search_terms = terms
+        
         # Load packages into self.tree_search
-        model_applications = gtk.TreeStore(gtk.gdk.Pixbuf, str, gtk.gdk.Pixbuf, object)
+        #model_applications = gtk.TreeStore(gtk.gdk.Pixbuf, str, gtk.gdk.Pixbuf, object)
 
-        self.model_filter = model_applications.filter_new()
-        self.model_filter.set_visible_func(self.visible_func)
+        #self.model_filter = model_applications.filter_new()
+        #self.model_filter.set_visible_func(self.visible_func)
 
-        sans26  =  ImageFont.truetype ( self.FONT, 26 )
-        sans10  =  ImageFont.truetype ( self.FONT, 12 )
+        #sans26  =  ImageFont.truetype ( self.FONT, 26 )
+        #sans10  =  ImageFont.truetype ( self.FONT, 12 )
+        self.tree_search.execute_script('Clear()')
         if self._search_in_category == self.root_category:
             packages = self.packages
         else:
             packages = self._search_in_category.packages
-        packages.sort(self.package_compare)
+        #packages.sort(self.package_compare)
         for package in packages:
             visible = False
             if terms.upper() in package.pkg.name.upper():
@@ -963,28 +964,34 @@ class Application():
 
 
             if visible:
-                iter = model_applications.insert_before(None, None)
+                #iter = model_applications.insert_before(None, None)
+                #try:
+                #    model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_app_icon(package), 32, 32))
+                #except:
+                #    try:
+                #        model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_app_icon_alternative(package), 32, 32))
+                #    except:
+                #        model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_fallback_icon(package), 32, 32))
                 try:
-                    model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_app_icon(package), 32, 32))
+                	icon = self.find_app_icon(package)
                 except:
-                    try:
-                        model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_app_icon_alternative(package), 32, 32))
-                    except:
-                        model_applications.set_value(iter, 0, gtk.gdk.pixbuf_new_from_file_at_size(self.find_fallback_icon(package), 32, 32))
+                	try:
+                		icon = self.find_app_icon_alternative(package)
+                	except:
+                		icon = self.find_fallback_icon(package)
                 summary = ""
                 if package.pkg.candidate is not None:
                     summary = package.pkg.candidate.summary
                     summary = unicode(summary, 'UTF-8', 'replace')
                     summary = summary.replace("<", "&lt;")
                     summary = summary.replace("&", "&amp;")
+                self.tree_search.execute_script('addPackage("%s", "%s", "%s")' %(package.name, icon, summary))
 
-                model_applications.set_value(iter, 1, "%s\n<small><span foreground='#555555'>%s</span></small>" % (package.name, summary.capitalize()))
+                #model_applications.set_value(iter, 1, "%s\n<small><span foreground='#555555'>%s</span></small>" % (package.name, summary.capitalize()))
+                #model_applications.set_value(iter, 3, package)
 
-                
-                model_applications.set_value(iter, 3, package)
-
-        self.tree_search.set_model(self.model_filter)
-        del model_applications
+        #self.tree_search.set_model(self.model_filter)
+        #del model_applications
         if self._search_in_category != self.root_category:
             self.search_in_category_hbox.show()
             self.message_search_in_category_label.set_markup("<b>%s</b>" % (_("Only results in category \"%s\" are shown." % self._search_in_category.name)))
@@ -999,6 +1006,7 @@ class Application():
             self.navigation_bar.add_with_id(self._search_in_category.name, self.navigate, self.NAVIGATION_SUB_CATEGORY, self._search_in_category)
             navigation_id = self.NAVIGATION_SEARCH_SUB_CATEGORY
         self.navigation_bar.add_with_id(_("Search results"), self.navigate, navigation_id, "search")
+        
 
     def visible_func(self, model, iter):
         package = model.get_value(iter, 3)
@@ -1014,10 +1022,6 @@ class Application():
                 
         # Load package info
         subs = {}
-        #subs['username'] = self.prefs["username"]
-        #subs['password'] = self.prefs["password"]
-        #subs['comment'] = ""
-        #subs['score'] = 0
         
         font_description = gtk.Label("pango").get_pango_context().get_font_description()
         subs['font_family'] = font_description.get_family()
@@ -1036,9 +1040,6 @@ class Application():
         subs['description'] = package.pkg.candidate.description
         subs['description'] = subs['description'].replace('\n','<br />\n')
         subs['summary'] = package.pkg.candidate.summary.capitalize()
-        #subs['label_score'] = _("Score:")
-        #subs['label_submit'] = _("Submit")
-        #subs['label_your_review'] = _("Your review")
 
         impacted_packages = []    
 
@@ -1078,8 +1079,6 @@ class Application():
         subs['sizeLabel'] = _("Size:")
         subs['versionLabel'] = _("Version:")
         subs['impactLabel'] = _("Impact on packages:")
-        #subs['reviewsLabel'] = _("Reviews")
-        #subs['yourReviewLabel'] = _("Your review:")
         subs['detailsLabel'] = _("Details")
         
         if package.pkg.is_installed:
@@ -1132,21 +1131,6 @@ class Application():
 
         # Update the navigation bar
         self.navigation_bar.add_with_id(package.name, self.navigate, self.NAVIGATION_ITEM, package)
-
-
-    def package_compare(self, x, y):
-        if x.score == y.score:
-            if x.name < y.name:
-                return -1
-            elif x.name > y.name:
-                return 1
-            else:
-                return 0
-
-        if x.score > y.score:
-            return -1
-        else:  #x < y
-            return 1
 
 if __name__ == "__main__":
     model = Classes.Model()
