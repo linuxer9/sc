@@ -96,11 +96,6 @@
     body {
 background-image: url("/usr/lib/sc/data/noise.png");
       background-repeat: repeat-x repeat-y;        
-		border-radius: 20px;
-        border: 1px solid #000;
-      margin-left: 20px; 
-      margin-right: 20px; 
-      padding: 1em 12px;   
       font-family:${font_family};
       font-size:${font_size};
       font-weight:${font_weight};
@@ -269,14 +264,8 @@ background-image: url("/usr/lib/sc/data/noise.png");
 					<div id="wrapper">
          <table width="100%">
          <tr>
-             
-
-
          </tr>
          </table>
-             
-
-
 <table width="100%">
     <tr>
     <td valign="absmiddle" align="right"><img src="$iconbig"/></td>
@@ -284,15 +273,8 @@ background-image: url("/usr/lib/sc/data/noise.png");
               class="action_button"
           alt="$action_button_label"
               value="$action_button_label"
-              onclick='action_button_clicked()'/</td></td>
-
-
-
-
-
-
+              onclick='action_button_clicked()'/></td></td>
     </tr>
-
 </table>
  
 
@@ -305,36 +287,18 @@ background-image: url("/usr/lib/sc/data/noise.png");
 <p>
 <div id="description">
 <table width="100%" cellpadding="3">
-
-     
-
-
-
         <td valign="top">$description<br/><br/><i><a href="javascript:action_website_clicked()">$homepage</a></i></td>
-
         <td valign="top">
-            
+
         </td>
 
-
-              
              </td>
-
 </table>    
-               	
-
+ 
 </div>
 </p>
-
-
 </div>
     </div>
-   
-
-
-
-    
-					
 					<div id="wrapper">
                      <h2>$detailsLabel</h2>
                      <div id="inner">                      
@@ -343,49 +307,8 @@ background-image: url("/usr/lib/sc/data/noise.png");
                        <p><b>$impactLabel</b> $packagesinfo</p>
                      </div> 
                    </div>
-                    
-                  
-                    <div id="wrapper">
-                     <h2>$reviewsLabel</h2>                                         
-                              
-                    
-                     <form action="http://community.linuxmint.com/index.php/software/remote_review" method="post">
-                              <input type="hidden" name="username" value="$username">
-                                <input type="hidden" name="password" value="$password">
-                                <input type="hidden" name="package" value="$appname">
-                    <table width="100%" cellpadding="3">
-                        <tr>
-                            <td nowrap><b>$yourReviewLabel</b></td>
-                            <td>                                                          
-                                <select name="score">
-                                $score_options
-                                </select>
-                            </td>
-                            <td width="100%">
-                                <input type="text" name="comment" style="width:100%" value="$comment"/>
-                            </td>
-                            <td>
-                                <input type="submit" value="$label_submit"/>                                
-                            </td>
-                        </tr>                        
-                    </table> 
-                    </form>
-                    <div id="inner">           
-                       <table id="reviews" cellpadding="5"></table>
-                     </div> 
-                   </div>
-                    
-					
-				
-                        
-
                         </div>
-                        
                             </div>
-              
-
-
-  
     </div>
 </body>
 </html>
