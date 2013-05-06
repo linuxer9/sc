@@ -292,7 +292,7 @@ class Application():
         gladefile = "/usr/lib/sc/sc.glade"
         wTree = gtk.glade.XML(gladefile, "main_window")
         wTree.get_widget("main_window").set_title(_("Software Manager"))
-        wTree.get_widget("main_window").set_icon_from_file("/usr/lib/sc/icon.svg")
+        wTree.get_widget("main_window").set_icon_from_file("/usr/lib/sc/sc.png")
         wTree.get_widget("main_window").connect("delete_event", self.close_application)
         
         

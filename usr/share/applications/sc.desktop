@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Software Manager
 Name[ms]=Pengurus Perisian
@@ -166,10 +167,9 @@ Comment[de]=Neue Anwendungen installieren
 Comment[gl]=Instalar novos aplicativos
 Comment[hr]=Instaliraj nove aplikacije
 Exec=mintInstall
-Icon=sc
+Icon=/usr/share/pixmaps/sc.png
 Terminal=false
 Type=Application
 Encoding=UTF-8
 Categories=Application;System;Settings
-NoDisplay=true
 MimeType=application/x-mint;
