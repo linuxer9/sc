@@ -628,7 +628,7 @@ class Application():
         featured = Category(_("Featured"), "/usr/lib/sc/data/templates/featured.svg", None, self.root_category, self.categories)
         featured.matchingPackages = self.file_to_array("/usr/lib/sc/categories/featured.list")
 
-        islam = Category(_("Islamic-Software"), "/usr/share/sc/data/icons/categories/icon-islam.svg", None, self.root_category, self.categories)
+        islam = Category(_("Islamic-Software"), "/usr/share/sc/data/icons/icon-islam.svg", None, self.root_category, self.categories)
         islam.matchingPackages = self.file_to_array("/usr/lib/sc/categories/islamic-software.list")
         
         self.category_all = Category(_("All Packages"), "applications-other", None, self.root_category, self.categories)
