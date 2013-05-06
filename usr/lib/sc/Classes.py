@@ -25,7 +25,6 @@ class Portal:
 	update_url = ""
 	categories = []
 	items = []
-	reviews = []
 
 	def __init__(self, key, name="", link="", release="", release_name="", update_url=""):
 		self.key = key
@@ -36,7 +35,6 @@ class Portal:
 		self.update_url = update_url
 		self.categories = []
 		self.items = []
-		self.reviews = []
 
 	def find_category(self, key):
 		for category in self.categories:
@@ -95,11 +93,8 @@ class Item:
 	size=""
 	website=""
 	repository=""
-	average_rating=""
-	score = 0
 	screenshot=None
-	screenshot_url=None
-	reviews = []	
+	screenshot_url=None	
 	packages = []
 	repositories = []
 	is_special = True
@@ -110,7 +105,6 @@ class Item:
 		self.portal=portal
 		self.key=key
 		self.link=link
-		self.mint_file=mint_file
 		self.category=category
 		self.name=name
 		self.description=description
@@ -121,19 +115,10 @@ class Item:
 		self.size=size
 		self.website=website
 		self.repository=repository
-		self.average_rating=average_rating
 		self.screenshot=None
 		self.screenshot_url=None
-		self.score = 0
-		self.reviews = []
 		self.packages = []
 		self.repositories = []
 		self.is_special = True
 		self.status = "installed"
 		self.version = ""
-
-	def add_review(self, review):
-		self.reviews.append(review)
-		review.item = self
-
-
