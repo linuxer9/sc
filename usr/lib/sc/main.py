@@ -628,10 +628,8 @@ class Application():
         featured = Category(_("Featured"), "/usr/lib/sc/data/templates/featured.svg", None, self.root_category, self.categories)
         featured.matchingPackages = self.file_to_array("/usr/lib/sc/categories/featured.list")
 
-        islam = Category(_("Islamic-Software"), "/usr/share/sc/data/icons/categories/icon-islam.svg", None, self.root_category, self.categories)
-        islam.matchingPackages = self.file_to_array("/usr/lib/sc/categories/islamic-software.list")
-        
-        self.category_all = Category(_("All Packages"), "applications-other", None, self.root_category, self.categories)
+
+        #self.category_all = Category(_("All Packages"), "applications-other", None, self.root_category, self.categories)
         
         internet = Category(_("Internet"), "applications-internet", None, self.root_category, self.categories)
         subcat = Category(_("Web"), "applications-internet", ("web", "net"), internet, self.categories)
@@ -678,7 +676,9 @@ class Application():
         subcat.matchingPackages = self.file_to_array("/usr/lib/sc/categories/games-simulations.list")
         
         Category(_("Accessories"), "applications-utilities", ("accessories", "utils"), self.root_category, self.categories)
-
+        islam = Category(_("Islamic"), "/usr/share/sc/data/icons/categories/icon-islam.svg", None, self.root_category, self.categories)
+        islam.matchingPackages = self.file_to_array("/usr/lib/sc/categories/islamic-software.list")
+        
         cat = Category(_("System tools"), "applications-system", ("system", "admin"), self.root_category, self.categories)
         cat.matchingPackages = self.file_to_array("/usr/lib/sc/categories/system-tools.list")
 
@@ -719,7 +719,7 @@ class Application():
             package = Package(pkg.name, pkg)
             self.packages.append(package)
             self.packages_dict[pkg.name] = package
-            self.category_all.packages.append(package)
+            #self.category_all.packages.append(package)
 
             # If the package is not a "matching package", find categories with matching sections
             if (pkg.name not in self.matchedPackages):
