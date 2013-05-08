@@ -1,6 +1,6 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Name=Software Manager
+Name=Software Center
 Name[ms]=Pengurus Perisian
 Name[hi]=सॉफ्टवेयर प्रबंधक
 Name[lb]=Software Manager
@@ -166,7 +166,7 @@ Comment[jv]=Masang aplikasi anyar
 Comment[de]=Neue Anwendungen installieren
 Comment[gl]=Instalar novos aplicativos
 Comment[hr]=Instaliraj nove aplikacije
-Exec=mintInstall
+Exec=gksu sc
 Icon=/usr/share/pixmaps/sc.png
 Terminal=false
 Type=Application
