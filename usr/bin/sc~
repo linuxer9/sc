@@ -1,9 +1,0 @@
-#!/bin/bash
-sudo apt-get remove > /dev/null
-
-if [ $? -eq '0' ];
-then
-  exec /usr/lib/sc/main.py
-else
-	echo "Please close any other dpkg apps before running SC."
-fi
