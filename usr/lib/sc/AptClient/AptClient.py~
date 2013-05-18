@@ -201,8 +201,8 @@ class AptClient(EventsObject):
         return self._queue_task("remove", package_name = package_name)
 
     def upgrade_package(self, package_name):
-        return self._queue_task("remove","install", package_name = package_name)
-
+        return self._queue_task("remove", package_name = package_name)
+        return self._queue_task("install", package_name = package_name)
     
     def wait(self, delay):
         # Debugging task
