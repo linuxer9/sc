@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-06 18:08+0200\n"
+"POT-Creation-Date: 2013-06-24 07:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: usr/lib/sc/main.py:49 usr/lib/sc/main.py:294
+#: usr/lib/sc/main.py:49 usr/lib/sc/main.py:296
 msgid "Software Manager"
 msgstr ""
 
@@ -53,249 +53,267 @@ msgstr ""
 
 #: usr/lib/sc/main.py:222
 #, python-format
-msgid "Removing %s"
+msgid "Upgrading %s"
 msgstr ""
 
 #: usr/lib/sc/main.py:224
+#, python-format
+msgid "Removing %s"
+msgstr ""
+
+#: usr/lib/sc/main.py:226
 msgid "Updating cache"
 msgstr ""
 
-#: usr/lib/sc/main.py:226 usr/lib/sc/main.py:228
+#: usr/lib/sc/main.py:228 usr/lib/sc/main.py:230
 msgid "No role set"
 msgstr ""
 
-#: usr/lib/sc/main.py:378
+#: usr/lib/sc/main.py:380
 msgid "Active tasks:"
 msgstr ""
 
-#: usr/lib/sc/main.py:411 usr/lib/sc/main.py:1063 usr/lib/sc/main.py:1074
+#: usr/lib/sc/main.py:413 usr/lib/sc/main.py:1103 usr/lib/sc/main.py:1114
 msgid "B"
 msgstr ""
 
-#: usr/lib/sc/main.py:413 usr/lib/sc/main.py:1065 usr/lib/sc/main.py:1076
+#: usr/lib/sc/main.py:415 usr/lib/sc/main.py:1105 usr/lib/sc/main.py:1116
 msgid "KB"
 msgstr ""
 
-#: usr/lib/sc/main.py:415 usr/lib/sc/main.py:1067 usr/lib/sc/main.py:1078
+#: usr/lib/sc/main.py:417 usr/lib/sc/main.py:1107 usr/lib/sc/main.py:1118
 msgid "MB"
 msgstr ""
 
-#: usr/lib/sc/main.py:417 usr/lib/sc/main.py:1069 usr/lib/sc/main.py:1080
+#: usr/lib/sc/main.py:419 usr/lib/sc/main.py:1109 usr/lib/sc/main.py:1120
 msgid "GB"
 msgstr ""
 
-#: usr/lib/sc/main.py:439
+#: usr/lib/sc/main.py:441
 msgid "Icon"
 msgstr ""
 
-#: usr/lib/sc/main.py:443
+#: usr/lib/sc/main.py:445
 msgid "Application"
 msgstr ""
 
-#: usr/lib/sc/main.py:450
+#: usr/lib/sc/main.py:452
 msgid "Score"
 msgstr ""
 
-#: usr/lib/sc/main.py:472
+#: usr/lib/sc/main.py:474
 msgid "Task"
 msgstr ""
 
-#: usr/lib/sc/main.py:475
+#: usr/lib/sc/main.py:477
 msgid "Status"
 msgstr ""
 
-#: usr/lib/sc/main.py:478
+#: usr/lib/sc/main.py:480
 msgid "Progress"
 msgstr ""
 
-#: usr/lib/sc/main.py:626
+#: usr/lib/sc/main.py:631
 msgid "Categories"
 msgstr ""
 
-#: usr/lib/sc/main.py:628
+#: usr/lib/sc/main.py:633
 msgid "Featured"
 msgstr ""
 
-#: usr/lib/sc/main.py:634
+#: usr/lib/sc/main.py:639
 msgid "Internet"
 msgstr ""
 
-#: usr/lib/sc/main.py:635
+#: usr/lib/sc/main.py:640
 msgid "Web"
 msgstr ""
 
-#: usr/lib/sc/main.py:637
+#: usr/lib/sc/main.py:642
 msgid "Email"
 msgstr ""
 
-#: usr/lib/sc/main.py:639
+#: usr/lib/sc/main.py:644
 msgid "Chat"
 msgstr ""
 
-#: usr/lib/sc/main.py:641
+#: usr/lib/sc/main.py:646
 msgid "File sharing"
 msgstr ""
 
-#: usr/lib/sc/main.py:644
+#: usr/lib/sc/main.py:649
 msgid "Sound and video"
 msgstr ""
 
-#: usr/lib/sc/main.py:647
+#: usr/lib/sc/main.py:652
 msgid "Graphics"
 msgstr ""
 
-#: usr/lib/sc/main.py:649
+#: usr/lib/sc/main.py:654
 msgid "3D"
 msgstr ""
 
-#: usr/lib/sc/main.py:651
+#: usr/lib/sc/main.py:656
 msgid "Drawing"
 msgstr ""
 
-#: usr/lib/sc/main.py:653
+#: usr/lib/sc/main.py:658
 msgid "Photography"
 msgstr ""
 
-#: usr/lib/sc/main.py:655
+#: usr/lib/sc/main.py:660
 msgid "Publishing"
 msgstr ""
 
-#: usr/lib/sc/main.py:657
+#: usr/lib/sc/main.py:662
 msgid "Scanning"
 msgstr ""
 
-#: usr/lib/sc/main.py:659
+#: usr/lib/sc/main.py:664
 msgid "Viewers"
 msgstr ""
 
-#: usr/lib/sc/main.py:662
+#: usr/lib/sc/main.py:667
 msgid "Office"
 msgstr ""
 
-#: usr/lib/sc/main.py:664
+#: usr/lib/sc/main.py:669
 msgid "Games"
 msgstr ""
 
-#: usr/lib/sc/main.py:665
+#: usr/lib/sc/main.py:670
 msgid "Board games"
 msgstr ""
 
-#: usr/lib/sc/main.py:667
+#: usr/lib/sc/main.py:672
 msgid "First-person shooters"
 msgstr ""
 
-#: usr/lib/sc/main.py:669
+#: usr/lib/sc/main.py:674
 msgid "Real-time strategy"
 msgstr ""
 
-#: usr/lib/sc/main.py:671
+#: usr/lib/sc/main.py:676
 msgid "Turn-based strategy"
 msgstr ""
 
-#: usr/lib/sc/main.py:673
+#: usr/lib/sc/main.py:678
 msgid "Emulators"
 msgstr ""
 
-#: usr/lib/sc/main.py:675
+#: usr/lib/sc/main.py:680
 msgid "Simulation and racing"
 msgstr ""
 
-#: usr/lib/sc/main.py:678
+#: usr/lib/sc/main.py:683
 msgid "Accessories"
 msgstr ""
 
-#: usr/lib/sc/main.py:679
+#: usr/lib/sc/main.py:684
 msgid "Islamic"
 msgstr ""
 
-#: usr/lib/sc/main.py:682
+#: usr/lib/sc/main.py:687
 msgid "System tools"
 msgstr ""
 
-#: usr/lib/sc/main.py:685
+#: usr/lib/sc/main.py:690
 msgid "Fonts"
 msgstr ""
 
-#: usr/lib/sc/main.py:688
+#: usr/lib/sc/main.py:693
 msgid "Science and Education"
 msgstr ""
 
-#: usr/lib/sc/main.py:691
+#: usr/lib/sc/main.py:696
 msgid "Programming"
 msgstr ""
 
-#: usr/lib/sc/main.py:822
+#: usr/lib/sc/main.py:827
 #, python-format
 msgid "%d packages"
 msgstr ""
 
-#: usr/lib/sc/main.py:1000
+#: usr/lib/sc/main.py:1035
 #, python-format
 msgid "Only results in category \"%s\" are shown."
 msgstr ""
 
-#: usr/lib/sc/main.py:1011
+#: usr/lib/sc/main.py:1046
 msgid "Search results"
 msgstr ""
 
-#: usr/lib/sc/main.py:1059
+#: usr/lib/sc/main.py:1097
 #, python-format
 msgid "%s (removed)"
 msgstr ""
 
-#: usr/lib/sc/main.py:1061
+#: usr/lib/sc/main.py:1099
+#, python-format
+msgid "%s (upgradable)"
+msgstr ""
+
+#: usr/lib/sc/main.py:1101
 #, python-format
 msgid "%s (installed)"
 msgstr ""
 
-#: usr/lib/sc/main.py:1082
+#: usr/lib/sc/main.py:1122
 msgid "Size:"
 msgstr ""
 
-#: usr/lib/sc/main.py:1083
+#: usr/lib/sc/main.py:1123
 msgid "Version:"
 msgstr ""
 
-#: usr/lib/sc/main.py:1084
+#: usr/lib/sc/main.py:1124
 msgid "Impact on packages:"
 msgstr ""
 
-#: usr/lib/sc/main.py:1085
+#: usr/lib/sc/main.py:1125
 msgid "Details"
 msgstr ""
 
-#: usr/lib/sc/main.py:1089
+#: usr/lib/sc/main.py:1129 usr/lib/sc/main.py:1135
 #, python-format
 msgid "%(localSize)s of disk space freed"
 msgstr ""
 
-#: usr/lib/sc/main.py:1091
+#: usr/lib/sc/main.py:1131 usr/lib/sc/main.py:1137
 #, python-format
 msgid "%(localSize)s of disk space required"
 msgstr ""
 
-#: usr/lib/sc/main.py:1094
+#: usr/lib/sc/main.py:1141
 #, python-format
 msgid "%(downloadSize)s to download, %(localSize)s of disk space freed"
 msgstr ""
 
-#: usr/lib/sc/main.py:1096
+#: usr/lib/sc/main.py:1143
 #, python-format
 msgid "%(downloadSize)s to download, %(localSize)s of disk space required"
 msgstr ""
 
-#: usr/lib/sc/main.py:1114
+#: usr/lib/sc/main.py:1161
+msgid "Upgrade"
+msgstr ""
+
+#: usr/lib/sc/main.py:1164
+msgid "Upgradable"
+msgstr ""
+
+#: usr/lib/sc/main.py:1169
 msgid "Remove"
 msgstr ""
 
-#: usr/lib/sc/main.py:1117
+#: usr/lib/sc/main.py:1172
 msgid "Installed"
 msgstr ""
 
-#: usr/lib/sc/main.py:1120
+#: usr/lib/sc/main.py:1176
 msgid "Install"
 msgstr ""
 
-#: usr/lib/sc/main.py:1123
+#: usr/lib/sc/main.py:1179
 msgid "Not installed"
 msgstr ""

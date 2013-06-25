@@ -3,32 +3,32 @@ msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-04-26 15:37+0100\n"
-"PO-Revision-Date: 2011-05-14 19:58+0000\n"
+"PO-Revision-Date: 2013-06-24 07:37+0200\n"
 "Last-Translator: Mojtaba <Unknown>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-04-29 10:03+0000\n"
-"X-Generator: Launchpad (build 15149)\n"
+"X-Generator: Poedit 1.5.4\n"
 
 msgid "%(downloadSize)s to download, %(localSize)s of disk space freed"
 msgstr "%(downloadSize)s ليتم تحميله, %(localSize)s ليتم إفراغه"
 
 msgid "%(downloadSize)s to download, %(localSize)s of disk space required"
-msgstr "%(downloadSize)s ليتم تحميله, %(localSize)s مساحة مطلوبة"
+msgstr "%(downloadSize)s ليتم تحميله، %(localSize)s سيتم استخدامها"
 
 msgid "%(localSize)s of disk space freed"
-msgstr "%(localSize)s مساحة أفرغت من القرص."
+msgstr "%(localSize)s من مساحة القرص سيتم إفراغها."
 
 msgid "%(localSize)s of disk space required"
-msgstr "%(localSize)s مساحة مطلوبة من القرص."
+msgstr "%(localSize)s من مساحة القرص مطلوبة."
 
 msgid "%d ongoing actions"
 msgstr "عمليات جارية %d"
 
 msgid "%d packages"
-msgstr "%d حزمة\\حزم"
+msgstr "%d حزمة"
 
 msgid "%d packages are currently available"
 msgstr "%d حزمة متوفرة حالياً"
@@ -46,7 +46,7 @@ msgid "%s (running in the background)"
 msgstr "(جاري في الخلفية) %s"
 
 msgid "3D"
-msgstr "تصميم ثلاثي الأبعاد"
+msgstr "ثلاثي الأبعاد"
 
 msgid "About"
 msgstr "حول"
@@ -85,7 +85,7 @@ msgid "Awesome!"
 msgstr "ممتاز"
 
 msgid "B"
-msgstr "بايت"
+msgstr "بت"
 
 msgid "Backing up your APT sources"
 msgstr "يتم عمل نسخه من مصادر (apt)"
@@ -140,6 +140,9 @@ msgstr "البريد الإلكتروني"
 
 msgid "Emulators"
 msgstr "محاكيات"
+
+msgid "Islamic"
+msgstr "إسلاميات"
 
 msgid "Enabling distribution component"
 msgstr "تفعيل مكون توزيعة"
@@ -205,16 +208,16 @@ msgid "Impact on packages:"
 msgstr "التأثير على الحزم:"
 
 msgid "Install"
-msgstr "تنصيب"
+msgstr "تثبيت"
 
 msgid "Install %s?"
-msgstr "تنصيب %s ؟"
+msgstr "تثبيت %s ؟"
 
 msgid "Install new applications"
-msgstr "تنصيب برامج جديدة"
+msgstr "تثبيت برامج جديدة"
 
 msgid "Installation is complete"
-msgstr "عملية التنصيب انتهت"
+msgstr "عملية التثبيت انتهت"
 
 msgid "Installed"
 msgstr "تم التثبيت"
@@ -370,7 +373,7 @@ msgid "Simulation and racing"
 msgstr "ألعاب المحاكاة و السباقات"
 
 msgid "Size:"
-msgstr ":الحجم"
+msgstr "الحجم:"
 
 msgid "So so"
 msgstr "متوسط"
